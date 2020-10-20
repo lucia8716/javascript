@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style type="text/css" media="screen">
+  
+
+div{
+  width:300px;
+  padding:16px;
+  border-radius:10px;
+  margin:auto;
+  background-color:#ccc;
+}
+
+div label{
+  width:72px;
+  font-weight:bold;
+  display:inline-block;
+}
+
+div input[type="text"]
+{
+  width:180px;
+  padding:3px 10px;
+  border:1px solid #f6f6f6;
+  border-radius:3px;
+  background-color:#f6f6f6;
+  margin:8px 0;
+  display:inline-block;
+}
+
+div button{
+  width:100%;
+  padding:8px 16px;
+  margin-top:32px;
+  border:1px solid #000;
+  border-radius:5px;
+  display:block;
+  color:#fff;
+  background-color:#000;
+} 
+
+#in2  {
+
+  visibility: hidden;
+
+}
+
+div button:hover{
+  cursor:pointer;
+}
+</style>
+
+
+</head>
+<body>
+
+<div id="div" name="mairo">
+  
+
+  
+  
+  <label for="nombre: ">DNI</label> <br>
+  <input id="in1" type="text" onblur="myFunction()" name="nombre"><input id="in2" type="text" name="letra" readonly>
+  
+   <p>
+    <button id="button1" onclick="reseteo ()">Nuevo Calculo</button>
+    
+  </p>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+document.getElementById("in1").focus();
+var nom;
+var dni;
+var letra;
+var filter6=/^([0-9])*$/;
+var ver=new boolean(true);
+
+
+//http://js.dokry.com/cmo-hacer-un-campo-de-input-de-solo-lectura-con-javascript.html
+function myFunction() {
+
+
+nom=document.getElementById("in1").value;
+
+var resto=23;
+var t;
+var letra=['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+
+
+
+ver=filter6.test(nom);//validar que sea solo 8 numeros
+
+if (ver==true&&nom.length==8) {
+
+  t=nom%resto;
+document.getElementById("in2").value=letra[t];
+document.getElementById("in2").style.visibility = "visible"; //pongo el segundo campo en visible
+document.getElementById("in1").setAttribute("readonly", true);//pongo el primer campo en solo lectura para no modificarlo
+
+} else {
+  alert("introduzca 8 digitos");
+  document.getElementById("in1").value="";
+  document.getElementById("in1").focus();
+
+}
+
+
+}
+
+function reseteo (){//vacio los campo y quito atributo de solo lectura vuelvo a poner el campo de la letra en invisible
+  document.getElementById("in1").value="";
+  document.getElementById("in2").value="";
+  document.getElementById("in1").focus();
+  document.getElementById("in1").removeAttribute("readonly");
+  document.getElementById("in2").style.visibility = "hidden";
+
+}
+ 
+
+
+
+</script>
+
+
+</body>
+</html>
