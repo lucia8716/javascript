@@ -54,7 +54,7 @@ div select
 
 }
 
-#in9,#hij2{
+#in9,#hij2,#sector,#in10,#numcoches,#in11{
 
   visibility: hidden;
 }
@@ -84,16 +84,17 @@ div button:hover{
   
 
   
-  <label for="fecha: ">Fecha Recepcion de la cuenta</label> <input id="in1" type="date" name="nombre" min="1920-12-31">
+  <label for="fecha: ">Fecha Recepcion de la cuenta</label> <input id="in1" type="date" name="nombre" min="1920-12-31" max="2022-12-31">
   <label for="nombre: ">Nombre</label> <input id="in2" onblur="mario()" type="text" name="nombre">
-  <label for="apellido: ">Apellido</label> <input id="in3" onblur="mario2()" type="text" name="apellido">
+  <label for="apellido1: ">Apellido1</label> <input id="in3" onblur="mario2()" type="text" name="apellido">
+  <label for="apellido2: ">Apellido2</label> <input id="in12" onblur="mario3()" type="text" name="apellido2">
   <label for="DNI: ">DNI</label> <input id="in4" type="number" onblur="compnumdni()" name="DNI" minlength="1" maxlength="99999999"><input id="in5"  type="text" onblur="completradni()" name="DNIletra">
   <label for="Direccion: ">Direccion</label> <input id="in6" type="text" onblur="compcalle()" name="direccion">
   <label for="CP: ">Codigo Postal</label> <input id="in7" type="number" onblur="codigop()" name="CP">
   <label for="Telefono: ">Telefono</label> <input id="in8" type="number" onblur="telefono ()" name="Telefono">
   <label for="Estado Civil: ">Estado Civil</label> 
 
-  <select name="estado">
+  <select name="estado" onchange="estadocivil()">
     <option value="" selected disabled>seleccione un estado</option>
     <option value="1">Casado</option> 
     <option value="2">Soltero</option>
@@ -109,38 +110,48 @@ div button:hover{
     <option value="NO" >NO</option> 
 </select>
 
-
-
-
-  <label for="Hijos2: " id="hij2">Numero de Hijos</label> <input id="in9" type="text" name="hijos" >
+  <label for="Hijos2: " id="hij2">Numero de Hijos</label> <input id="in9" type="number" name="hijos" onblur="numerohijos()">
   <label for="laboral: ">Estado Laboral</label> 
-                                                <select name="laboral">
+                                                <select name="laboral" onchange="laboral(value)">
                                                   <option value="" selected disabled>seleccione un estado</option>
                                                   <option value="1">Trabajando</option> 
-                                                  <option value="2">En paro</option> 
+                                                  <option value="2">En Paro</option> 
                                               </select>
 
 
-  <label for="Sector: ">Sector</label> <input id="in19" type="text" name="sector">
+  <label for="Sector: " id="sector">Sector</label> <input id="in10" type="text" name="sector">
   <label for="vacaciones: ">Disponibilidad de vacaciones</label> 
-  <select name="vacaciones">
+  <select name="vacaciones" onblur="vacaciones()">
     <option value="" selected disabled>seleccione si dispone de vacaciones</option>
     <option value="1">SI</option> 
     <option value="2">NO</option> 
 </select>
+
+
+
+
+
   <label for="propiedades: ">domicilio en propiedad</label> 
-  <select name="propiedades">
+  <select name="propiedades" onblur="domicilio()">
     <option value="" selected disabled>seleccione si tiene propiedades</option>
     <option value="1">SI</option> 
     <option value="2">NO</option> 
 </select>
 
-  <label for="vehiculos: ">numero de vehiculos</label> <input id="in10" type="number" name="vehiculos">
+<label for="coches: ">Vehiculos en propiedad</label> 
+  <select name="coches" onchange="coches(value)">
+    <option value="" selected disabled>seleccione si tiene vehiculos en propiedad</option>
+    <option value="1">SI</option> 
+    <option value="2">NO</option> 
+</select>
+
+
+  <label for="vehiculos: " id="numcoches">numero de vehiculos</label> <input id="in11" type="number" name="vehiculos" onblur="numerocoches()">
 
 
 
   <p>
-    <button id="button1" onclick="apellido()">Alta</button>
+    <button id="button1" onclick="validar ()">Alta</button>
   </p>
 
 </div>
@@ -162,8 +173,13 @@ var letradni;
 var calle;
 var cp;
 var tlfn;
-var nombre=[];
-var apellido=[];
+var valiestacivil=0;
+var valiestahijos=0;
+var valiestalabora=0;
+var valivacaciones=0;
+var validomicilio=0;
+var valicoches=0;
+var contador;
 var y=0;
 var w=0;
 var m=0;
@@ -173,6 +189,7 @@ var filter8=/^([a-zA-Z])/;
 var filter9=/^([a-zA-Z0-9º/\s]*$)/;
 var ver=new boolean(true);
 var verapellido=new boolean(true);
+var verapellido2=new boolean(true);
 var vernumdni=new boolean(true);
 var verletdni=new boolean(true);
 var vercalle=new boolean(true);
@@ -192,7 +209,7 @@ nom=document.getElementById("in2").value;
                         if(ver==true&&nom.length>1){
                           nom=nom.toLowerCase();
                           
-                          alert("nombre correcto");
+                          
                                 
                         }
                         else{
@@ -214,7 +231,7 @@ function mario2(){
   if(verapellido==true&&ape.length>1){
     ape=ape.toLowerCase();
                           
-                          alert("apellido correcto");
+                          
                                 
                         }
                         else{
@@ -228,6 +245,28 @@ function mario2(){
 
 }
 
+
+function mario3(){
+
+ape=document.getElementById("in12").value;
+verapellido2=filter6.test(ape);
+if(verapellido2==true&&ape.length>1){
+  ape=ape.toLowerCase();
+                        
+                        
+                              
+                      }
+                      else{
+                              alert("Debes introducir un apellido válido");
+                              
+                              document.getElementById("in12").value="";
+                              document.getElementById("in12").focus();
+                              
+                         
+                      }
+
+}
+
 function compnumdni()
 {
 ndni=document.getElementById("in4").value;
@@ -236,7 +275,7 @@ vernumdni=filter7.test(ndni);
   if(vernumdni==true&&ndni.length<9){
     
                           
-                          alert("numero correcto");
+                         
                                 
                         }
                         else{
@@ -263,7 +302,7 @@ verletdni=filter8.test(letradni);
 if(verletdni==true&&letradni.length==1){
   
                         
-  alert("letra correcto");
+  
         
 }
 else{
@@ -285,7 +324,7 @@ function compcalle(){
   if(vercalle==true&&calle.length>5){
   
                         
-  alert("calle correcto");
+  
         
 }
 else{
@@ -304,7 +343,7 @@ function codigop(){
   if(cp>999&&cp<53000){
   
                         
-  alert("cp correcto");
+ 
         
 }
 else{
@@ -321,9 +360,9 @@ function telefono (){
   tlfn=document.getElementById("in8").value;
 
 
-  if ((tlfn.charAt(0)==9||6||8)&&tlfn.length==9){
+  if ((tlfn.charAt(0)==9||6||7)&&tlfn.length==9){
 
-    alert("telefono correcto");
+    
 
 
 
@@ -339,21 +378,184 @@ function telefono (){
 
 }
 
+function estadocivil(){
+
+  valiestacivil++;
+  contador++;
+
+  if(valiestacivil>1){
+
+    valiestacivil=1;
+
+  }
+
+}
+
+
 
 
 function hijos($i){
 
   nom=$i;
 if (nom=="SI") {
-
+  
   document.getElementById("in9").style.visibility = "visible";
   document.getElementById("hij2").style.visibility = "visible";
+  valiestahijos++;
+  contador++;
   
 } else {
   document.getElementById("in9").style.visibility = "hidden";
   document.getElementById("hij2").style.visibility = "hidden";
+  document.getElementById("in9").value="";
   
 }
+}
+
+function numerohijos(){
+
+ 
+  tlfn=document.getElementById("in9").value;
+
+  if (tlfn>15||tlfn<1) {
+
+    alert("Numero incorrecto, introduzca un numero real");
+    document.getElementById("in9").value="";
+        document.getElementById("in9").focus();
+    
+  }
+
+}
+
+function laboral($m){
+
+nom=$m;
+if (nom=="1") {
+
+document.getElementById("in10").style.visibility = "visible";
+document.getElementById("sector").style.visibility = "visible";
+valiestalabora++;
+contador++;
+
+} else {
+document.getElementById("in10").style.visibility = "hidden";
+document.getElementById("sector").style.visibility = "hidden";
+document.getElementById("in10").value="";
+
+}
+
+}
+
+function coches($z){
+
+nom=$z;
+if (nom=="1") {
+
+document.getElementById("in11").style.visibility = "visible";
+document.getElementById("numcoches").style.visibility = "visible";
+valicoches++;
+contador++;
+
+} else {
+document.getElementById("in11").style.visibility = "hidden";
+document.getElementById("numcoches").style.visibility = "hidden";
+document.getElementById("in11").value="";
+
+}
+
+}
+
+function numerocoches(){
+
+ 
+tlfn=document.getElementById("in11").value;
+
+if (tlfn>2000||tlfn<1) {
+
+  alert("Numero incorrecto, introduzca un numero real");
+  document.getElementById("in11").value="";
+      document.getElementById("in11").focus();
+  
+}
+
+}
+
+function domicilio(){
+
+  validomicilio++;
+  contador;
+
+if(validomicilio>1){
+
+  validomicilio=1;
+
+}
+
+}
+
+function vacaciones(){
+
+  valivacaciones++;
+  contador++;
+
+if(valivacaciones>1){
+
+  valivacaciones=1;
+
+}
+
+}
+
+function validar (){
+
+
+
+if (valiestahijos==0) {
+
+  alert("Seleccione si tiene hijos");
+  
+}
+
+if (valiestacivil==0) {
+
+alert("Selecciones su estado civil");
+
+}
+if (valiestalabora==0) {
+
+alert("Selecciones su estado laboral");
+
+}
+if (valivacaciones==0) {
+
+alert("Selecciones si dispone de vacaciones");
+
+}
+if (validomicilio==0) {
+
+alert("Selecciones si tiene domicilio en propiedad");
+
+}
+if (valicoches==0) {
+
+alert("Selecciones si dispone de coches");
+
+}
+
+if (contador==6){
+  alert("Ha rellenado su formulario correctamete");
+
+}
+
+
+
+
+
+
+
+
+
+
 }
 
 
