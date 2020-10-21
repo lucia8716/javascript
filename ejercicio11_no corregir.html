@@ -54,6 +54,12 @@ div select
 
 }
 
+#in9,#hij2{
+
+  visibility: hidden;
+}
+
+
 div button{
   width:100%;
   padding:8px 16px;
@@ -84,7 +90,7 @@ div button:hover{
   <label for="DNI: ">DNI</label> <input id="in4" type="number" onblur="compnumdni()" name="DNI" minlength="1" maxlength="99999999"><input id="in5"  type="text" onblur="completradni()" name="DNIletra">
   <label for="Direccion: ">Direccion</label> <input id="in6" type="text" onblur="compcalle()" name="direccion">
   <label for="CP: ">Codigo Postal</label> <input id="in7" type="number" onblur="codigop()" name="CP">
-  <label for="Telefono: ">Telefono</label> <input id="in8" type="number" name="Telefono">
+  <label for="Telefono: ">Telefono</label> <input id="in8" type="number" onblur="telefono ()" name="Telefono">
   <label for="Estado Civil: ">Estado Civil</label> 
 
   <select name="estado">
@@ -96,8 +102,17 @@ div button:hover{
     <option value="5">Viudo</option>
   </select>
 
+  <label for="hijos1: ">Tiene Hijos</label> 
+  <select name="hijos1" onchange="hijos(value)">
+    <option value="" selected disabled>seleccione si tiene hijos</option>
+    <option  value="SI" >SI</option> 
+    <option value="NO" >NO</option> 
+</select>
 
-  <label for="Hijos: ">Numero de Hijos</label> <input id="in8" type="text" name="hijos">
+
+
+
+  <label for="Hijos2: " id="hij2">Numero de Hijos</label> <input id="in9" type="text" name="hijos" >
   <label for="laboral: ">Estado Laboral</label> 
                                                 <select name="laboral">
                                                   <option value="" selected disabled>seleccione un estado</option>
@@ -106,7 +121,7 @@ div button:hover{
                                               </select>
 
 
-  <label for="Sector: ">Sector</label> <input id="in9" type="text" name="sector">
+  <label for="Sector: ">Sector</label> <input id="in19" type="text" name="sector">
   <label for="vacaciones: ">Disponibilidad de vacaciones</label> 
   <select name="vacaciones">
     <option value="" selected disabled>seleccione si dispone de vacaciones</option>
@@ -146,6 +161,7 @@ var ndni;
 var letradni;
 var calle;
 var cp;
+var tlfn;
 var nombre=[];
 var apellido=[];
 var y=0;
@@ -299,6 +315,46 @@ else{
 }
 }
 
+
+function telefono (){
+
+  tlfn=document.getElementById("in8").value;
+
+
+  if ((tlfn.charAt(0)==9||6||8)&&tlfn.length==9){
+
+    alert("telefono correcto");
+
+
+
+
+  }else{
+    alert("Telefono no valido Debes introducir una numero con formato correcto");
+        
+        document.getElementById("in8").value="";
+        document.getElementById("in8").focus();
+
+
+  }
+
+}
+
+
+
+function hijos($i){
+
+  nom=$i;
+if (nom=="SI") {
+
+  document.getElementById("in9").style.visibility = "visible";
+  document.getElementById("hij2").style.visibility = "visible";
+  
+} else {
+  document.getElementById("in9").style.visibility = "hidden";
+  document.getElementById("hij2").style.visibility = "hidden";
+  
+}
+}
 
 
 
