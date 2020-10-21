@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style type="text/css" media="screen">
+  
+
+div{
+  width:600px;
+  padding:16px;
+  border-radius:10px;
+  margin:auto;
+  background-color:#ccc;
+}
+
+div label{
+  width:250px;
+  font-weight:bold;
+  display:inline-block;
+}
+
+div input
+{
+  width:300px;
+  padding:3px 10px;
+  border:1px solid #f6f6f6;
+  border-radius:3px;
+  background-color:#f6f6f6;
+  margin:8px 0;
+  display:inline-block;
+}
+
+
+
+div select
+{
+  width:320px;
+  padding:3px 10px;
+  border:1px solid #f6f6f6;
+  border-radius:3px;
+  background-color:#f6f6f6;
+  margin:8px 0;
+  display:inline-block;
+}
+
+#in5{
+  width:20px;
+  margin-left: 5px;
+
+}
+#in4{
+  width:255px;
+
+}
+
+div button{
+  width:100%;
+  padding:8px 16px;
+  margin-top:32px;
+  border:1px solid #000;
+  border-radius:5px;
+  display:block;
+  color:#fff;
+  background-color:#000;
+} 
+
+div button:hover{
+  cursor:pointer;
+}
+</style>
+
+
+</head>
+<body>
+
+<div id="div" name="mairo">
+  
+
+  
+  <label for="fecha: ">Fecha Recepcion de la cuenta</label> <input id="in1" type="date" name="nombre" min="1920-12-31">
+  <label for="nombre: ">Nombre</label> <input id="in2" onblur="mario()" type="text" name="nombre">
+  <label for="apellido: ">Apellido</label> <input id="in3" onblur="mario2()" type="text" name="apellido">
+  <label for="DNI: ">DNI</label> <input id="in4" type="number" onblur="compnumdni()" name="DNI" minlength="1" maxlength="99999999"><input id="in5"  type="text" onblur="completradni()" name="DNIletra">
+  <label for="Direccion: ">Direccion</label> <input id="in6" type="text" onblur="compcalle()" name="direccion">
+  <label for="CP: ">Codigo Postal</label> <input id="in7" type="number" onblur="codigop()" name="CP">
+  <label for="Telefono: ">Telefono</label> <input id="in8" type="number" name="Telefono">
+  <label for="Estado Civil: ">Estado Civil</label> 
+
+  <select name="estado">
+    <option value="" selected disabled>seleccione un estado</option>
+    <option value="1">Casado</option> 
+    <option value="2">Soltero</option>
+    <option value="3">Separado judicialmente</option> 
+    <option value="4">Divorciado</option> 
+    <option value="5">Viudo</option>
+  </select>
+
+
+  <label for="Hijos: ">Numero de Hijos</label> <input id="in8" type="text" name="hijos">
+  <label for="laboral: ">Estado Laboral</label> 
+                                                <select name="laboral">
+                                                  <option value="" selected disabled>seleccione un estado</option>
+                                                  <option value="1">Trabajando</option> 
+                                                  <option value="2">En paro</option> 
+                                              </select>
+
+
+  <label for="Sector: ">Sector</label> <input id="in9" type="text" name="sector">
+  <label for="vacaciones: ">Disponibilidad de vacaciones</label> 
+  <select name="vacaciones">
+    <option value="" selected disabled>seleccione si dispone de vacaciones</option>
+    <option value="1">SI</option> 
+    <option value="2">NO</option> 
+</select>
+  <label for="propiedades: ">domicilio en propiedad</label> 
+  <select name="propiedades">
+    <option value="" selected disabled>seleccione si tiene propiedades</option>
+    <option value="1">SI</option> 
+    <option value="2">NO</option> 
+</select>
+
+  <label for="vehiculos: ">numero de vehiculos</label> <input id="in10" type="number" name="vehiculos">
+
+
+
+  <p>
+    <button id="button1" onclick="apellido()">Alta</button>
+  </p>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+// http://chuwiki.chuidiang.org/index.php?title=Expresiones_regulares_en_javascript
+//https://uniwebsidad.com/libros/javascript/capitulo-7/validacion
+//https://code.tutsplus.com/es/tutorials/8-regular-expressions-you-should-know--net-6149
+
+
+var nom;
+var ape;
+var ndni;
+var letradni;
+var calle;
+var cp;
+var nombre=[];
+var apellido=[];
+var y=0;
+var w=0;
+var m=0;
+var filter6=/^([a-zA-Z])*$/;
+var filter7=/^([0-9])*$/;
+var filter8=/^([a-zA-Z])/;
+var filter9=/^([a-zA-Z0-9º/\s]*$)/;
+var ver=new boolean(true);
+var verapellido=new boolean(true);
+var vernumdni=new boolean(true);
+var verletdni=new boolean(true);
+var vercalle=new boolean(true);
+var vercp=new boolean(true);
+
+
+
+
+
+function mario(){
+
+nom=document.getElementById("in2").value;
+
+                       
+                       ver=filter6.test(nom);
+                        
+                        if(ver==true&&nom.length>1){
+                          nom=nom.toLowerCase();
+                          
+                          alert("nombre correcto");
+                                
+                        }
+                        else{
+                                alert("Debes introducir un nombre válido");
+                                
+                                document.getElementById("in2").value="";
+                                document.getElementById("in2").focus();
+                                
+                           
+                        }
+
+}
+
+
+function mario2(){
+
+  ape=document.getElementById("in3").value;
+  verapellido=filter6.test(ape);
+  if(verapellido==true&&ape.length>1){
+    ape=ape.toLowerCase();
+                          
+                          alert("apellido correcto");
+                                
+                        }
+                        else{
+                                alert("Debes introducir un apellido válido");
+                                
+                                document.getElementById("in3").value="";
+                                document.getElementById("in3").focus();
+                                
+                           
+                        }
+
+}
+
+function compnumdni()
+{
+ndni=document.getElementById("in4").value;
+
+vernumdni=filter7.test(ndni);
+  if(vernumdni==true&&ndni.length<9){
+    
+                          
+                          alert("numero correcto");
+                                
+                        }
+                        else{
+                                alert("Debes introducir un numero con formato válido");
+                                
+                                document.getElementById("in4").value="";
+                                document.getElementById("in4").focus();
+}
+
+}
+
+
+
+
+
+
+
+function completradni() {
+
+
+letradni=document.getElementById("in5").value;
+verletdni=filter8.test(letradni);
+
+if(verletdni==true&&letradni.length==1){
+  
+                        
+  alert("letra correcto");
+        
+}
+else{
+        alert("Debes introducir un letra con formato válido");
+        
+        document.getElementById("in5").value="";
+        document.getElementById("in5").focus();
+}
+
+
+
+}
+
+
+function compcalle(){
+  calle=document.getElementById("in6").value;
+  vercalle=filter9.test(calle);
+
+  if(vercalle==true&&calle.length>5){
+  
+                        
+  alert("calle correcto");
+        
+}
+else{
+        alert("Debes introducir una calle con formato válido");
+        
+        document.getElementById("in6").value="";
+        document.getElementById("in6").focus();
+}
+}
+
+function codigop(){
+
+  cp=document.getElementById("in7").value;
+  
+
+  if(cp>999&&cp<53000){
+  
+                        
+  alert("cp correcto");
+        
+}
+else{
+        alert("Debes introducir una cp con formato válido");
+        
+        document.getElementById("in7").value="";
+        document.getElementById("in7").focus();
+}
+}
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
