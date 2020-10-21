@@ -84,7 +84,7 @@ div button:hover{
   
 
   
-  <label for="fecha: ">Fecha Recepcion de la cuenta</label> <input id="in1" type="date" name="nombre" min="1920-12-31" max="2022-12-31">
+  <label for="fecha: ">Fecha Recepcion de la cuenta</label> <input id="in1" type="date" onchange="fecha()" name="nombre" min="1920-12-31" max="2022-12-31">
   <label for="nombre: ">Nombre</label> <input id="in2" onblur="mario()" type="text" name="nombre">
   <label for="apellido1: ">Apellido1</label> <input id="in3" onblur="mario2()" type="text" name="apellido">
   <label for="apellido2: ">Apellido2</label> <input id="in12" onblur="mario3()" type="text" name="apellido2">
@@ -173,13 +173,6 @@ var letradni;
 var calle;
 var cp;
 var tlfn;
-var valiestacivil=0;
-var valiestahijos=0;
-var valiestalabora=0;
-var valivacaciones=0;
-var validomicilio=0;
-var valicoches=0;
-var contador;
 var y=0;
 var w=0;
 var m=0;
@@ -194,6 +187,22 @@ var vernumdni=new boolean(true);
 var verletdni=new boolean(true);
 var vercalle=new boolean(true);
 var vercp=new boolean(true);
+var valiestacivil=new boolean("false");
+var valiestahijos=new boolean("false");
+var valiestalabora=new boolean("false");
+var valivacaciones=new boolean("false");
+var validomicilio=new boolean("false");
+var valicoches=new boolean("false");
+var valinombre=new boolean("false");
+var valiap1=new boolean("false");
+var valiap2=new boolean("false");
+var validni=new boolean("false");
+var validniletra=new boolean("false");
+var validireccion=new boolean("false");
+var valicp=new boolean("false");
+var valitelefono=new boolean("false");
+var valifecha=new boolean("false");
+var valnumhijos=new boolean("false");
 
 
 
@@ -209,7 +218,7 @@ nom=document.getElementById("in2").value;
                         if(ver==true&&nom.length>1){
                           nom=nom.toLowerCase();
                           
-                          
+                          valinombre=true;
                                 
                         }
                         else{
@@ -230,6 +239,7 @@ function mario2(){
   verapellido=filter6.test(ape);
   if(verapellido==true&&ape.length>1){
     ape=ape.toLowerCase();
+    valiap1=true;
                           
                           
                                 
@@ -252,7 +262,7 @@ ape=document.getElementById("in12").value;
 verapellido2=filter6.test(ape);
 if(verapellido2==true&&ape.length>1){
   ape=ape.toLowerCase();
-                        
+  valiap2=true;
                         
                               
                       }
@@ -273,6 +283,7 @@ ndni=document.getElementById("in4").value;
 
 vernumdni=filter7.test(ndni);
   if(vernumdni==true&&ndni.length<9){
+    validni=true;
     
                           
                          
@@ -289,10 +300,6 @@ vernumdni=filter7.test(ndni);
 
 
 
-
-
-
-
 function completradni() {
 
 
@@ -300,7 +307,7 @@ letradni=document.getElementById("in5").value;
 verletdni=filter8.test(letradni);
 
 if(verletdni==true&&letradni.length==1){
-  
+  validniletra=true;
                         
   
         
@@ -312,18 +319,15 @@ else{
         document.getElementById("in5").focus();
 }
 
-
-
 }
-
 
 function compcalle(){
   calle=document.getElementById("in6").value;
   vercalle=filter9.test(calle);
 
   if(vercalle==true&&calle.length>5){
-  
-                        
+    validomicilio=true;
+    validireccion=true;
   
         
 }
@@ -342,7 +346,7 @@ function codigop(){
 
   if(cp>999&&cp<53000){
   
-                        
+             valicp=true;           
  
         
 }
@@ -362,7 +366,7 @@ function telefono (){
 
   if ((tlfn.charAt(0)==9||6||7)&&tlfn.length==9){
 
-    
+    valitelefono=true;
 
 
 
@@ -380,14 +384,10 @@ function telefono (){
 
 function estadocivil(){
 
-  valiestacivil++;
-  contador++;
+  valiestacivil=true;
+ 
 
-  if(valiestacivil>1){
-
-    valiestacivil=1;
-
-  }
+  
 
 }
 
@@ -401,15 +401,25 @@ if (nom=="SI") {
   
   document.getElementById("in9").style.visibility = "visible";
   document.getElementById("hij2").style.visibility = "visible";
-  valiestahijos++;
-  contador++;
+  valiestahijos=true;
   
-} else {
+  
+} 
+
+if (nom=="NO") {
   document.getElementById("in9").style.visibility = "hidden";
   document.getElementById("hij2").style.visibility = "hidden";
   document.getElementById("in9").value="";
+  valiestahijos=true;
+  
   
 }
+
+
+
+
+
+
 }
 
 function numerohijos(){
@@ -434,17 +444,24 @@ if (nom=="1") {
 
 document.getElementById("in10").style.visibility = "visible";
 document.getElementById("sector").style.visibility = "visible";
-valiestalabora++;
-contador++;
+valiestalabora=true;
 
-} else {
+
+} 
+
+if (nom=="2"){
 document.getElementById("in10").style.visibility = "hidden";
 document.getElementById("sector").style.visibility = "hidden";
 document.getElementById("in10").value="";
+valiestalabora=true;
+
 
 }
 
+
+
 }
+
 
 function coches($z){
 
@@ -453,15 +470,20 @@ if (nom=="1") {
 
 document.getElementById("in11").style.visibility = "visible";
 document.getElementById("numcoches").style.visibility = "visible";
-valicoches++;
-contador++;
+valicoches=true;
 
-} else {
+
+} 
+
+if (nom=="2"){
 document.getElementById("in11").style.visibility = "hidden";
 document.getElementById("numcoches").style.visibility = "hidden";
 document.getElementById("in11").value="";
-
+valicoches=true;
 }
+
+
+
 
 }
 
@@ -482,78 +504,126 @@ if (tlfn>2000||tlfn<1) {
 
 function domicilio(){
 
-  validomicilio++;
-  contador;
+  validomicilio=true;
+  validireccion=true;
+  
 
-if(validomicilio>1){
 
-  validomicilio=1;
-
-}
 
 }
 
 function vacaciones(){
 
-  valivacaciones++;
-  contador++;
-
-if(valivacaciones>1){
-
-  valivacaciones=1;
+  valivacaciones=true;
+ 
 
 }
 
+function fecha (){
+
+  valifecha=true;
+
 }
+
 
 function validar (){
 
+  
+
+  if (valifecha!=true) {
+
+alert("Rellene una fecha");
+
+}
+
+  
+  if (valinombre!=true) {
+
+alert("Rellene un nombre");
+
+}
+
+if (valiap1!=true) {
+
+alert("Rellene un primer apellido");
+
+}
+
+if (valiap2!=true) {
+
+alert("Rellene un segundo apellido");
+
+}
+
+if (valicp!=true) {
+
+alert("Rellene un codigo postal");
+
+}
+
+if (validireccion!=true) {
+
+alert("Rellene una direccion");
+
+}
+
+if (validni!=true) {
+
+alert("Rellene un dni");
+
+}
+
+if (validniletra!=true) {
+
+alert("Rellene un letra dni");
+
+}
 
 
-if (valiestahijos==0) {
+if (valiestahijos!=true) {
 
   alert("Seleccione si tiene hijos");
   
 }
 
-if (valiestacivil==0) {
+if (valitelefono!=true) {
+
+alert("Seleccione si tiene hijos");
+
+}
+
+if (valiestacivil!=true) {
 
 alert("Selecciones su estado civil");
 
 }
-if (valiestalabora==0) {
+if (valiestalabora!=true) {
 
 alert("Selecciones su estado laboral");
 
 }
-if (valivacaciones==0) {
+if (valivacaciones!=true) {
 
 alert("Selecciones si dispone de vacaciones");
 
 }
-if (validomicilio==0) {
+if (validomicilio!=true) {
 
 alert("Selecciones si tiene domicilio en propiedad");
 
 }
-if (valicoches==0) {
+if (valicoches!=true) {
 
 alert("Selecciones si dispone de coches");
 
 }
 
-if (contador==6){
+if (valiestahijos==true&&valiestacivil==true&&valiestalabora==true&&valivacaciones==true&&validomicilio==true&&valicoches==true
+&&valinombre==true&&valiap1==true&&valiap2==true&&validni==true&&validniletra==true&&validireccion==true&&valicp==true
+&&valitelefono==true&&valifecha==true){
   alert("Ha rellenado su formulario correctamete");
 
 }
-
-
-
-
-
-
-
-
 
 
 }
