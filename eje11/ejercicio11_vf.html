@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="css11.css">
+
+</head>
+<body>
+
+<div id="div" name="mairo">
+  
+
+  
+  <label for="fecha: ">Fecha Recepcion de la cuenta</label> <input id="in1" type="date" onchange="fecha()" name="nombre" min="1920-12-31" max="2022-12-31">
+  <label for="nombre: ">Nombre</label> <input id="in2" onblur="mario()" type="text" name="nombre">
+  <label for="apellido1: ">Apellido1</label> <input id="in3" onblur="mario2()" type="text" name="apellido">
+  <label for="apellido2: ">Apellido2</label> <input id="in12" onblur="mario3()" type="text" name="apellido2">
+  <label for="DNI: ">DNI</label> <input id="in4" type="number" onblur="compnumdni()" name="DNI" minlength="1" maxlength="99999999"><input id="in5"  type="text" onblur="completradni()" name="DNIletra">
+  <label for="Direccion: ">Direccion</label> <input id="in6" type="text" onblur="compcalle()" name="direccion">
+  <label for="CP: ">Codigo Postal</label> <input id="in7" type="number" onblur="codigop()" name="CP">
+  <label for="Telefono: ">Telefono</label> <input id="in8" type="number" onblur="telefono ()" name="Telefono">
+  <label for="Estado Civil: ">Estado Civil</label> 
+
+  <select name="estado" onchange="estadocivil()">
+    <option value="" selected disabled>seleccione un estado</option>
+    <option value="1">Casado</option> 
+    <option value="2">Soltero</option>
+    <option value="3">Separado judicialmente</option> 
+    <option value="4">Divorciado</option> 
+    <option value="5">Viudo</option>
+  </select>
+
+  <label for="hijos1: ">Tiene Hijos</label> 
+  <select name="hijos1" onchange="hijos(value)">
+    <option value="" selected disabled>seleccione si tiene hijos</option>
+    <option  value="SI" >SI</option> 
+    <option value="NO" >NO</option> 
+</select>
+
+  <label for="Hijos2: " id="hij2">Numero de Hijos</label> <input id="in9" type="number" name="hijos" onblur="numerohijos()">
+  <label for="laboral: ">Estado Laboral</label> 
+                                                <select name="laboral" onchange="laboral(value)">
+                                                  <option value="" selected disabled>seleccione un estado</option>
+                                                  <option value="1">Trabajando</option> 
+                                                  <option value="2">En Paro</option> 
+                                              </select>
+
+
+  <label for="Sector: " id="sector">Sector</label> <input id="in10" onblur="sector()" type="text" name="sector">
+  <label for="vacaciones: ">Disponibilidad de vacaciones</label> 
+  <select name="vacaciones" onblur="vacaciones()">
+    <option value="" selected disabled>seleccione si dispone de vacaciones</option>
+    <option value="1">SI</option> 
+    <option value="2">NO</option> 
+</select>
+
+
+
+
+
+  <label for="propiedades: ">domicilio en propiedad</label> 
+  <select name="propiedades" onblur="domicilio()">
+    <option value="" selected disabled>seleccione si tiene propiedades</option>
+    <option value="1">SI</option> 
+    <option value="2">NO</option> 
+</select>
+
+<label for="coches: ">Vehiculos en propiedad</label> 
+  <select name="coches" onchange="coches(value)">
+    <option value="" selected disabled>seleccione si tiene vehiculos en propiedad</option>
+    <option value="1">SI</option> 
+    <option value="2">NO</option> 
+</select>
+
+
+  <label for="vehiculos: " id="numcoches">numero de vehiculos</label> <input id="in11" type="number" name="vehiculos" onblur="numerocoches()">
+
+
+
+  <p>
+    <button id="button1" onclick="validar ()">Alta</button>
+  </p>
+
+</div>
+
+<script type="text/javascript" src="js11.js">
+</script>
+
+
+</body>
+</html>
