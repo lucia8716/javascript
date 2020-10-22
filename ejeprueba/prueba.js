@@ -82,9 +82,16 @@ if (valicoches!=true) {
 
 if (valicoches==true){
   alert("Ha rellenado su formulario correctamete");
-  window.reload();
 
-}
+  window.location.reload();
+  
+  }
+ 
+
+
+
+
+
 
 
 }
