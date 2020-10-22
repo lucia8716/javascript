@@ -532,8 +532,11 @@ alert("Selecciones si dispone de coches");
 
 
 
-if (valiestahijos==true&&valiestacivil==true&&valiestalabora==true&&valivacaciones==true&&validomicilio==true&&valicoches==true&&valinombre==true&&valiap1==true&&valiap2==true&&validni==true&&validniletra==true&&validireccion==true&&valicp==true&&valitelefono==true&&valifecha==true){
+if (valiestahijos==true&&valiestacivil==true&&valiestalabora==true&&valivacaciones==true&&validomicilio==true&&valicoches==true&&valinombre==true&&valiap1==true&&valiap2==true&&validni==true&&validniletra==true&&validireccion==true&&valicp==true&&valitelefono==true&&valifecha==true&&valicoches==truevaliestahijos==true&&valiestalabora==true){
   alert("Ha rellenado su formulario correctamete");
+  document.getElementById("in1","in2","in3","in4","in5","in6","in7","in8","in9","in10","in11").value="";
+  
+  
   window.reload();
 
 }
