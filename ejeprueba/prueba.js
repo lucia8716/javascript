@@ -13,6 +13,7 @@ var filter8=/^([a-zA-Z])/;
 var filter9=/^([a-zA-Z0-9º/\s]*$)/;
 var ver=new boolean(true);
 var valicoches=false;
+var cont=0;
 
 
 
@@ -55,7 +56,7 @@ if (tlfn>2000||tlfn<1) {
 
 
 function validar (){
-
+  
   
 
   var v1=document.getElementById("in11").value;
@@ -74,7 +75,11 @@ if ((document.getElementById("in11").style.visibility =="visible")&&(v1.length>0
 
 if (valicoches!=true) {
 
+  
   alert("Selecciones si dispone de coches");
+  cont++;
+  alert(cont);
+
   
   }
  
