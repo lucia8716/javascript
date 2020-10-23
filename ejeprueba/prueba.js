@@ -17,9 +17,9 @@ var cont=0;
 
 
 
-function coches($z){
+function coches(){
 
-nom=$z;
+
 if (nom=="1") {
 
 document.getElementById("in11").style.visibility = "visible";
