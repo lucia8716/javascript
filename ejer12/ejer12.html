@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="ejer12.css">
+
+</head>
+<body>
+
+<div id="div" name="mairo">
+  
+  
+
+
+  <p>
+    <button id="button1" >Boton 1</button>  <button id="button2">Boton 2</button>
+    <button id="button3">Boton 3</button>
+    <button id="button4" onclick="nuevo()">Reestablecer</button>  
+  </p>
+
+</div>
+
+<script type="text/javascript">
+
+
+
+var filter7=/^([0-3])$/;
+var confirmar=false;
+var pregunta;
+
+
+while(confirmar==false){
+pregunta=prompt('Eligue que boton quiere que cambie de tamaño');
+confirmar=filter7.test(pregunta);
+
+if(confirmar==false){alert("Elija un numero con el rango entre 0 y 3")}
+
+}
+  
+if(pregunta==0){
+
+  alert("Esta eligiendo la version sin cambios")
+}
+
+
+if(pregunta==1){
+
+document.getElementById("button1").style.backgroundColor="#D44426";
+document.getElementById("button1").style.width="30%";
+document.getElementById("button1").style.border="4px solid #26D45B";
+document.getElementById("button1").style.height="70%";
+
+}
+
+if (pregunta==2) {
+document.getElementById("button2").style.backgroundColor="#D44426";
+document.getElementById("button2").style.border="4px solid #26D45B";
+document.getElementById("button2").style.height="70%";
+
+document.getElementById("button3").style.backgroundColor="#D44426";
+document.getElementById("button3").style.width="30%";
+document.getElementById("button3").style.border="4px solid #26D45B";
+document.getElementById("button3").style.height="70%";
+document.getElementById("button3").style.color="#818889";
+
+
+
+  
+} 
+if (pregunta==3){
+  document.getElementById("button3").padding="25px 36px";
+  document.getElementById("button3").backgroundColor="#D1EC538";
+  document.getElementById("button3").style.width="50%";
+
+document.getElementById("button1").style.backgroundColor="#D44426";
+document.getElementById("button1").style.width="30%";
+document.getElementById("button1").style.border="4px solid #26D45B";
+document.getElementById("button1").style.height="70%";
+}
+
+  
+
+
+
+function nuevo(){
+
+  window.location.reload();
+}
+
+
+</script>
+</body>
+</html>
