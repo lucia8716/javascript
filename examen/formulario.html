@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="examen.css">
+
+  
+
+</head>
+<body>
+
+<div id="div" name="mairo">
+  
+
+  
+  
+  <label for="nombre: ">Nombre</label> <input id="in1" type="text" name="nombre">
+  <label for="apellido: ">Apellido</label> <input id="in2" type="text" name="apellido">
+  
+   <p>
+    <button id="button1" onclick="myFunction()">Alta</button>
+    <button id="button2"onclick="baja ()">Baja</button>
+    <button id="button3"onclick="comprobar()">Comprobar</button>
+  </p>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+
+var nom;
+var ape;
+var nombre=[];
+var apellido=[];
+var y=0;
+var w=0;
+var m=0;
+var filter6=/^([a-zA-Z])*$/;
+var ver=new boolean(true);
+var ver2=new boolean(true);
+function myFunction() {
+
+nom=document.getElementById("in1").value;
+ape=document.getElementById("in2").value;
+
+
+do{// esta parte controla introducir el nombre y el apellido
+for(var x=0;x<1;x++){
+                       
+                       ver=filter6.test(nom);
+                        
+                        if(ver==true&&nom.length>1){
+                          nom=nom.toLowerCase();
+                          
+                          w++;
+                          
+                                
+                        }
+                        else{
+                                alert("Debes introducir un nombre válido");
+                                w=0;
+                                
+                        }
+ }
+
+
+for(var z=0;z<1;z++){
+
+  ver2=filter6.test(ape);
+                       
+                        
+                        if(ver2==true&&ape.length>1){
+                          ape=ape.toLowerCase();
+                          
+                          w++;
+                                
+                        }
+                        else{
+                                alert("Debes introducir un apellido válido");
+                               w=0;
+                                
+                        }
+ }
+
+}while(w==2);
+
+
+if(y==0&&w>1){
+
+alert("Nuevo usuario, bienvenido");//para  el primer usuario registrado
+y++;
+nombre.push(nom);
+apellido.push(ape);
+
+
+}else{//para ver si el usuario esta dentro del array, si esta repetido lo elimina
+
+if (w>1) {
+nombre.push(nom);
+apellido.push(ape);
+
+for (var i = 1; i<nombre.length; i++) {
+    if (nom==nombre[i-1].trim()&&ape==apellido[i-1].trim()) {alert("Usuario ya esta registrado en la bbdd"); 
+
+       i=nombre.length;
+       nombre.splice(i-1);
+       apellido.splice(i-1);
+       
+} else {if(i==nombre.length-1){
+
+
+
+
+  alert("Nuevo usuario, bienvenido");}
+
+}
+}
+}
+
+}
+
+document.getElementById("in1").value="";
+document.getElementById("in2").value="";
+document.getElementById("in1").focus();
+window.reload();
+w=0;
+}
+document.getElementById("in1").value="";
+document.getElementById("in2").value="";
+document.getElementById("in1").focus();
+window.reload();
+w=0;
+
+
+function comprobar() {//listado de usuarios registrados
+document.write("Usuarios registrados: \n"+"</br>");
+
+
+
+
+  for (var i = 0; i < nombre.length; i++) {
+ 
+  document.write("-"+nombre[i]+" "+apellido[i]+"</br>");
+ 
+}
+ 
+}
+
+ 
+function baja () {
+
+nom=document.getElementById("in1").value;
+ape=document.getElementById("in2").value;
+
+ for (var i = 0; i<nombre.length; i++) {
+  if (nom==nombre[i].trim()&&ape==apellido[i].trim()) {alert("Usuario dado de baja"); 
+       
+       nombre.splice(i,1);
+       apellido.splice(i,1);
+       i=nombre.length;
+       
+       
+} else {if(i==nombre.length-1){
+
+
+  alert("Usuario no esta resgistrado en la BBDD");}
+
+}
+}
+
+
+document.getElementById("in1").value="";
+document.getElementById("in2").value="";
+document.getElementById("in1").focus();
+window.reload();
+w=0;
+
+
+
+
+}
+  	  
+  
+
+
+</script>
+
+
+</body>
+</html>

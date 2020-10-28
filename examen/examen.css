@@ -34,19 +34,13 @@ div{
     background-color:#f6f6f6;
     margin:8px 0;
     display:inline-block;
+    margin-bottom: 5px;
+    
+    
   }
   
-  #in5{
-    width:20px;
-    margin-left: 5px;
-  
-  }
-  #in4{
-    width:255px;
-  
-  }
-  
-  #in9,#hij2,#sector,#in10,#numcoches,#in11{
+   
+  #entradas{
   
     visibility: hidden;
   }
