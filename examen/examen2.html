@@ -57,7 +57,7 @@
        
 
         <p>
-            <button id="button23"  id="b23" onclick="modificaralta()">Salidas</button>
+            <button id="button23"  id="b23" onclick="resalidas()">Salidas</button>
           </p>
     </div>
 
@@ -361,6 +361,7 @@ function resalidas (){//no esta completo del todo
 
     document.getElementById("salidas").style.visibility = "visible"; 
     var a =document.getElementById("in18").value;
+   var v=1;
 
 for ( i = 0; i < vastidor.length; i++) {
     
@@ -370,8 +371,17 @@ if (a==vastidor[i]&&estancia[i]=="si"){
 
     alert ("coche dado de salida")
 
+    v=0;
+
 
 }
+
+if (v>0) { alert("no hay registros")
+    
+} else {
+    
+}
+
 
     
 }
