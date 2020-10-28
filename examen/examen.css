@@ -45,6 +45,15 @@ div{
     visibility: hidden;
   }
   
+  #modificar{
+  
+    visibility: hidden;
+  }
+
+  #salidas{
+
+    visibility: hidden;
+  }
   
   div button{
     width:100%;
