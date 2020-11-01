@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="div" name="mairo">
+
+        <label for="nombre" id="introducir">Introduce un numero entre 1 y 5</label> &nbsp;
+        <input id="in1" type="text" name="in1" onblur="validar()">
+        <br><br>
+             <button id="button1"  id="b1" onclick="mario()">Calcular</button>
+                      </p>
+    </div>
+
+
+    <script>
+
+var a;
+var cont=0;
+
+function validar(){
+
+a=document.getElementById("in1").value;
+}
+
+
+function mario(){
+
+
+if (cont>0) {
+
+window.location.reload();
+
+}
+if (a!=1&&a!=2&&a!=3&&a!=4&&a!=5) {
+
+    alert("introduce un valor entre 1 y 5");
+    document.getElementById("in1").focus();
+    document.getElementById("in1").value="";
+    
+} else {
+    
+
+
+    a=document.getElementById("in1").value;
+    
+    for (i = 0; i < a; i++) {
+    var btn = document.createElement("BUTTON");   // Create a <button> element
+    btn.innerHTML = "CLICK ME";                   // Insert text
+    document.body.appendChild(btn);
+
+cont++;
+}        
+    }
+
+    
+
+
+}
+
+
+    </script>
+    
+</body>
+</html>
