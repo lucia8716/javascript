@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="examen.css">
+</head>
+<body>
+
+    <div id="div" name="mairo">
+
+        <label for="nombre" id="introducir">Nombre</label> <input id="in1" type="text" name="in1"readonly>
+
+        <label for="nombre" id="vastidor">Numero vastidor</label><input id="in2" type="number" name="in2">
+
+        <p>
+            <button id="button1"  id="b1" onclick="llamada ()">Entradas</button>
+            <button id="button3"  id="b3" onclick="consulta ()">Consultas</button>
+            <button id="button4"  id="b4" onclick="resalidas()">Salidas</button>
+          </p>
+    </div>
+
+
+    <div id="entradas" name="entradas" >
+
+        <label for="nombre">Numero bastidor</label> <input id="in3" type="text" name="in3"readonly>
+
+        <label for="motor">Motor</label><input id="in4" type="text" name="in4" onblur="resmotor()">
+        <label for="modelo">modelo</label><input id="in5" type="text" name="in5" onblur="resmodelo()">
+        <label for="tipo">Tipo de reparacion</label><input id="in6" type="text" name="in6" onblur="resrepara()">
+        <label for="estancia">Estancia en el taller</label><input id="in7" type="text" name="in7" onblur="resestancia()">
+
+        <p>
+            <button id="button2"  id="b2" onclick="resalta()">Alta</button>
+          </p>
+    </div>
+
+
+    <div id="modificar" name="modificar" >
+
+        <label for="nombre">Numero bastidor</label> <input id="in12" type="text" name="in12"readonly>
+        <label for="motor">Motor</label><input id="in8" type="text" name="in8" readonly>
+        <label for="modelo">modelo</label><input id="in9" type="text" name="in9" readonly>
+        <label for="tipo">Tipo de reparacion</label><input id="in10" type="text" name="in10" onblur="modificartipo ()">
+        <label for="estancia">Estancia en el taller</label><input id="in11" type="text" name="in11" onblur="modificarestancia()">
+
+        <p>
+            <button id="button2"  id="b2" onclick="modificaralta()">Modificar</button>
+          </p>
+    </div>
+
+    <div id="salidas" name="salidas" >
+
+       
+        <label for="tipo">Numero bastidor</label><input id="in18" type="text" name="in18">
+       
+
+        <p>
+            <button id="button23"  id="b23" onclick="resalidas()">Salidas</button>
+          </p>
+    </div>
+
+
+
+    
+</body>
+
+
+<script>
+
+in1.value=localStorage.getItem("in1");
+
+
+var vas;
+var mot;
+var mod;
+var rep;
+var est;
+
+
+var vastidor=[];
+var motor=[];
+var modelo=[];
+var tiporeparacion=[];
+var estancia=[];
+var w=0;
+var y=0;
+var filter6=/^([0-9])*$/;
+var filter7=/^([a-zA-Z])*$/;
+var ver=new boolean(true);
+var vermotor=new boolean(true);
+var vermodelo=new boolean(true);
+var vertiporeparacion=new boolean(true);
+var verestancia=new boolean(true);
+var numeromodificar=0;
+
+
+var valmodificartipo1=new boolean(false);
+var valmodificartipo2=new boolean(false);
+
+
+
+
+
+function llamada (){//esta parte controla el numero de bastidor
+
+vas=document.getElementById("in2").value;
+
+
+
+                       
+                       ver=filter6.test(vas);
+                        
+                        if(ver==true&&vas.length==12){
+                                                    
+                          w++;
+                          
+
+                          
+                                
+                        }
+                        else{
+                                alert("Debes introducir un numero de vastidor válido");
+                                w=0;
+                                document.getElementById("in2").value="";
+                                document.getElementById("in2").focus();
+                                
+                        }
+
+
+
+if(y==0&&w>0){
+
+alert("Nuevo usuario, bienvenido");
+y++;
+vastidor.push(vas);
+document.getElementById("entradas").style.visibility = "visible"; 
+in3.value=in2.value;
+
+}else{
+
+if (w>1) {
+vastidor.push(vas);
+
+for (var i = 1; i<vastidor.length; i++) {
+    if (vas==vastidor[i-1].trim()) {alert("Coche ya esta registrado en la bbdd, modificar campos"); 
+    document.getElementById("modificar").style.visibility = "visible";
+    document.getElementById("entradas").style.visibility = "hidden"; 
+
+       in12.value=vastidor=[i-1];
+       in8.value=motor[i-1];
+       in9.value=modelo[i-1];
+       in10.value=tiporeparacion[i-1];
+       in11.value=estancia[i-1];
+       numeromodificar=i-1;
+       i=vastidor.length;
+       vastidor.splice(i-1);
+
+    
+       
+} else {if(i==vastidor.length-1){
+
+alert("Entrada nueva");
+in3.value=in2.value;
+document.getElementById("entradas").style.visibility = "visible"; 
+}
+}
+}
+}
+}
+window.reload();
+}
+
+
+function resmotor(){// controla si es diesel y gasolina
+    mot=document.getElementById("in4").value;
+    mot=mot.toLowerCase();
+    vermotor=filter7.test(mot);
+    alert(mot);
+                        
+                        if((vermotor==true)&&((mot=="diesel")||(mot=="gasolina"))){
+                                          
+                            
+                            motor.push(mot);
+                            
+                               
+                        }
+                        else{
+                                alert("Debes introducir si es diesel o gasolina");
+                                document.getElementById("in4").value="";
+                                document.getElementById("in4").focus();
+                                
+                        }
+                    }
+
+                    function resmodelo(){
+    mod=document.getElementById("in5").value;
+    mod=mod.toLowerCase();
+    vermodelo=filter7.test(mod);
+    
+                        
+                        if(vermodelo==true){
+                                          
+                            
+                            modelo.push(mod);
+                               
+                        }
+                        else{
+                                alert("Debes introducir un modelo de motor correcto");
+                                document.getElementById("in5").value="";
+                                document.getElementById("in5").focus();
+                                
+                        }
+                    }
+
+
+                    function resrepara(){
+                        rep=document.getElementById("in6").value;
+                        rep=rep.toLowerCase();
+    vertiporeparacion=filter7.test(rep);
+    
+                        
+                        if((vertiporeparacion==true)&&((rep=="chapa")||(rep=="pintura"))){
+                                          
+                            
+                            tiporeparacion.push(rep);
+                               
+                        }
+                        else{
+                                alert("Debes introducir si es una reparacion de chapa o pintura");
+                                document.getElementById("in6").value="";
+                                document.getElementById("in6").focus();
+                                
+                        }
+                    }
+
+
+                    function resestancia(){
+                        est=document.getElementById("in7").value;
+                        est=est.toLowerCase();
+    verestancia=filter7.test(est);
+    
+                        
+                        if((verestancia==true)&&((est=="si")||(est=="no"))){
+                                          
+                            
+                            estancia.push(est);
+                               
+                        }
+                        else{
+                                alert("Debes introducir si el coche esta en taller");
+                                document.getElementById("in7").value="";
+                                document.getElementById("in7").focus();
+                                
+                        }
+                    }
+
+
+function resalta(){
+
+    alert("alta realizada correctamente");
+    //falta comprobar que estan todos rellenos   
+    
+    
+}
+
+function modificartipo (){
+
+
+
+if (tiporeparacion [numeromodificar]==in10.value) {
+
+    alert("modificar el registro");
+    document.getElementById("in10").value="";
+    document.getElementById("in10").focus();
+
+if((in10.value=="chapa")||(in10.value=="pintura")){
+    document.getElementById("in10").value="";
+    document.getElementById("in10").focus();
+
+    
+} 
+}else{
+    
+    tiporeparacion [numeromodificar]==in10.value;
+    
+    valmodificartipo1=true;
+}
+}
+
+function modificarestancia(){
+
+
+if((in11.value!="si")&&(in11.value!="no")){
+    document.getElementById("in11").value="";
+    document.getElementById("in11").focus();
+} 
+else {
+
+tiporeparacion [numeromodificar]==in11.value;
+
+valmodificartipo2=true;
+
+}
+}
+function modificaralta(){
+
+
+if ((valmodificartipo2==true)&&(valmodificartipo1==true)) {
+    alert("alta realizada la modificacion correctamente ");
+    document.getElementById("modificar").style.visibility = "hidden";
+    
+} else {
+    alert("no ha modificado los datos correctamente");
+
+
+}
+
+ }
+
+function consulta (){
+
+
+if (vastidor.length==0) {
+
+    document.write("No hay registros")
+    
+}
+
+
+
+for (i = 0; i < vastidor.length; i++) {
+
+if (tiporeparacion[i]=="chapa") {
+
+document.write("Numero de bastidor"+vastidor[i]+" "+"tipo de reparacion"+tiporeparacion[i]);
+
+
+    
+} else {
+
+document.write("Numero de bastidor"+vastidor[i]+" "+"tipo de reparacion"+tiporeparacion[i]);
+    
+}
+
+    
+    
+}
+
+
+
+
+
+}
+
+
+
+function resalidas (){//no esta completo del todo
+
+
+    document.getElementById("salidas").style.visibility = "visible"; 
+    var a =document.getElementById("in18").value;
+   var v=1;
+
+for ( i = 0; i < vastidor.length; i++) {
+    
+if (a==vastidor[i]&&estancia[i]=="si"){
+
+    estancia[i]=="no"
+
+    alert ("coche dado de salida")
+
+    v=0;
+
+
+}
+
+if (v>0) { alert("no hay registros")
+    
+} else {
+    
+}
+
+
+    
+}
+
+
+
+}
+
+
+</script>
+</html>
