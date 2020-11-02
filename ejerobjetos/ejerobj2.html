@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="examen.css">
+</head>
+<body>
+
+    <div id="div" name="mairo">
+
+        <label for="nombre" id="introducir">Nombre</label> <input id="in1" type="text" name="in1"readonly>
+
+        <label for="nombre" id="vastidor">Numero vastidor</label><input id="in2" type="number" name="in2">
+
+        <p>
+            <button id="button1"  id="b1" onclick="llamada ()">Entradas</button>
+            <button id="button3"  id="b3" onclick="consulta ()">Consultas</button>
+            <button id="button4"  id="b4" onclick="resalidas()">Salidas</button>
+          </p>
+    </div>
+
+
+    <div id="entradas" name="entradas" >
+
+        <label for="nombre">Numero bastidor</label> <input id="in3" type="text" name="in3"readonly>
+
+        <label for="motor">Motor</label><input id="in4" type="text" name="in4" onblur="resmotor()">
+        <label for="modelo">modelo</label><input id="in5" type="text" name="in5" onblur="resmodelo()">
+        <label for="tipo">Tipo de reparacion</label><input id="in6" type="text" name="in6" onblur="resrepara()">
+        <label for="estancia">Estancia en el taller</label><input id="in7" type="text" name="in7" onblur="resestancia()">
+
+        <p>
+            <button id="button2"  id="b2" onclick="resalta()">Alta</button>
+          </p>
+    </div>
+
+
+    <div id="modificar" name="modificar" >
+
+        <label for="nombre">Numero bastidor</label> <input id="in12" type="text" name="in12"readonly>
+        <label for="motor">Motor</label><input id="in8" type="text" name="in8" readonly>
+        <label for="modelo">modelo</label><input id="in9" type="text" name="in9" readonly>
+        <label for="tipo">Tipo de reparacion</label><input id="in10" type="text" name="in10" onblur="modificartipo ()">
+        <label for="estancia">Estancia en el taller</label><input id="in11" type="text" name="in11" onblur="modificarestancia()">
+
+        <p>
+            <button id="button2"  id="b2" onclick="modificaralta()">Modificar</button>
+          </p>
+    </div>
+
+    <div id="salidas" name="salidas" >
+
+       
+        <label for="tipo">Numero bastidor</label><input id="in18" type="text" name="in18">
+       
+
+        <p>
+            <button id="button23"  id="b23" onclick="resalidas()">Salidas</button>
+          </p>
+    </div>
+
+    <script type="text/javascript" src="ejerobje2.js">
+    </script>
+
+    
+</body>
+
+
+</html>
