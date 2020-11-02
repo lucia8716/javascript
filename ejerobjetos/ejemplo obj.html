@@ -8,26 +8,51 @@
 <body>
 
 
+    <label for="nombre">Numero bastidor</label> <input id="in1" type="number" name="in3" onblur="recoger()">
+    <button id="button2"  id="b2" onclick="anadir()">Alta</button>
+    <button id="button2"  id="b1" onclick="mostrar()">lista</button>
+        
+
 <script>
 
 
+//https://www.youtube.com/watch?v=goCeqBn15Ls
+//https://informaticapc.com/tutorial-javascript/objetos.php
 
 
-var coche = {};
-var coches =[coche];
+
+var x1;
+var coche={}
+var coches=[];
+
+function recoger(){
+
+x1=document.getElementById("in1").value;
 
 
-coche.color="rojo"
-coches.push(coche);
-alert(coche.color);
-alert(coches[0].color);
 
-coche.color="verde"
-coches.push(coche);
-alert(coche.color);
-alert(coches[1].color);
+}
 
 
+function anadir(){
+
+//coches.push(coche);
+coches.push({bastidor:x1})
+
+
+    
+}
+
+
+
+function mostrar (){
+
+    for (var i = 0; i < coches.length; i++) {
+    alert(coches[i].bastidor);
+
+
+}
+}
 
 
 
