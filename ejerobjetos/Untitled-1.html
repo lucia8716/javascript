@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="nombre">bastidor</label> <input id="in1" type="number" name="in3">
+    <label for="nombre">modelo</label> <input id="in2" type="tetx" name="in3" >
+    <button id="button2"  id="b2" onclick="anadir()">Alta</button>
+    <button id="button2"  id="b1" onclick="mostrar()">lista</button>
+    <button id="button2"  id="b1" onclick="recoger()">Recoger</button>
+
+
+    <script>
+
+var x1,x2,x3;
+
+var coches=[];
+
+var coche={};
+
+function recoger (){
+
+x1=document.getElementById("in1").value;
+x2=document.getElementById("in2").value;
+
+coche.bastidor=x1;
+coche.modelo=x2;
+
+
+}
+
+function anadir(){
+
+    coche.bta=x1;
+coches.push(coche);
+
+}
+
+function mostrar (){
+for (i = 0; i < coches.length; i++) {
+    
+    alert (coches[i].bastidor+" "+coches[i].modelo+" "+coches[i].bta;
+    
+}
+
+
+
+}
+
+
+
+
+
+
+    </script>
+</body>
+</html>
