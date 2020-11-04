@@ -9,10 +9,10 @@
 
 
     <label for="nombre">bastidor</label> <input id="in1" type="number" name="in3" onblur="recoger()">
-    <label for="nombre">modelo</label> <input id="in2" type="tetx" name="in3" >
+    <label for="nombre">modelo</label> <input id="in2" type="tetx" name="in3" onblur="recoger()">
     <button id="button2"  id="b2" onclick="anadir()">Alta</button>
     <button id="button2"  id="b1" onclick="mostrar()">lista</button>
-    <button id="button2"  id="b1" onclick="modificar()">lista</button>
+    
         
 
 <script>
@@ -25,39 +25,34 @@
 
 var x1;
 var x2;
-var coche={};
-var coches=[coche];
+var coches=[];
 
 function recoger(){
+
+    x1=document.getElementById("in1").value;
+    x2=document.getElementById("in2").value;
+
 }
 
 function anadir(){
-x1=document.getElementById("in1").value;
 
-Object.defineProperty(coche,'bastidor',{value:x1,Writable:true});
+var coche=new Object();
 
-//coches.push({bastidor:x1})
+    coche.bastidor=x1;
+    coche.modelo=x2;
+    coches.push(coche);
 
-coches.push(coche);
+   
+
 }
 function mostrar (){
-    for (var i = 1; i < coches.length; i++) {
+
+    for (var i = 0; i < coches.length; i++) {
     alert(coches[i].bastidor);
+    alert(coches[i].modelo);
     }
 }
 
-function modificar()
-{
-x2=document.getElementById("in2").value;
-
-Object.defineProperty(coche,'modelo',{value:x2,Writable:true});
-
-coches.push(coche);
-for (var i = 0; i < coches.length; i++) {
-    alert(coches[i].bastidor);
-    alert(coches[i].modelo);
-}
-}
 
 
 
