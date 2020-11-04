@@ -75,53 +75,50 @@ estancia.push("si");
 if (w>1) {
 
 for (var i = 0; i<vastidor.length; i++) {
+
+   
     if (vas==vastidor[i]&&estancia[i]=="si") {
 
-var veralerta=new boolean(true);       
-        
+        var alerta;
         do {
-        
-var alerta=prompt("Coche ya esta registrado en el taller, desea moficar registro");
+alerta=prompt("Coche ya esta registrado en el taller, desea moficar registro (escriba si o no)");
 alerta=alerta.toLowerCase();
-if (alerta=="si"||alerta=="no") {
-    veralerta=false;
+        }while(alerta!="si"&&alerta!="no");
+
+if(alerta=="si"){
+
+    document.getElementById("in12").value=coches[i].bastidor;
+    document.getElementById("in8").value=coches[i].motor;
+    document.getElementById("in9").value=coches[i].modelo;
+    document.getElementById("in10").value=coches[i].tiporeparacion;
+    i=vastidor.length;
+document.getElementById("modificar").style.visibility = "visible"; 
 }
 
- }while(veralerta==true);
-    
-if (alerta=="no") {
+if(alerta=="no"){
+
+    alert("Esta volviendo a la pantalla inicial");
+    i=vastidor.length;
     document.getElementById("in2").value="";
     document.getElementById("in2").focus();
-
-} else {
-
-    document.getElementById("modificar").style.visibility = "visible";
-    document.getElementById("entradas").style.visibility = "hidden"; 
-
-       in12.value=coches[i].bastidor;
-       in8.value=coches[i].motor;
-       in9.value=coches[i].modelo;
-       in10.value=coches[i].tiporeparacion;
-       i=vastidor.length;
-    
 }
 
 
-    
-       
 
-    
-       
+
+
 } else {
 vastidor.push(vas);
 estancia.push("si");
 alert("Entrada nueva");
 in3.value=in2.value;
 i=vastidor.length;
-document.getElementById("entradas").style.visibility = "visible"; 
+document.getElementById("entradas").style.visibility = "visible";
 
 }
 }
+ 
+
 }
 }
 
@@ -216,8 +213,8 @@ function resmotor(){// controla si es diesel y gasolina
 
 function resalta(){
 
-    alert("alta realizada correctamente");
-    //falta comprobar que estan todos rellenos   
+    
+      
 
     var coche={};
     var x1=document.getElementById("in3").value;
@@ -238,11 +235,32 @@ function resalta(){
         }
             }
     coche.estancia=x5;
+    
 
-    coches.push(coche);
+        //validar campos de validacion con un for
+
+
+        for ( bam = 0; bam < 1000; bam++) {
+            
+            if (x1!="") {
+
+                alert("faltan campos por rellenar");
+                
+            }else{bam=1000;}
+            
+        }
 
     
 
+    coches.push(coche);
+
+
+
+    
+
+
+
+    alert("alta realizada correctamente");
           document.getElementById("in3").value="";
           document.getElementById("in4").value="";
           document.getElementById("in5").value="";
@@ -282,6 +300,7 @@ for ( r = 0; r < coches.length; r++) {
     }     
 }
 document.getElementById("in2").focus();
+document.getElementById("in2").value="";
  document.getElementById("modificar").style.visibility = "hidden";
 
 }
