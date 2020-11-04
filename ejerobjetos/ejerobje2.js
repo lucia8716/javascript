@@ -5,20 +5,15 @@ in1.value=localStorage.getItem("in1");
 var vas;
 var mot;
 var mod;
-var rep;
+var rep;var rep2;
 var est;
 
+var coches=[];
 
 
-var coche = {};
-var coches=[coche];
+var vastidor=[];
+var estancia=[];
 
-
-//var vastidor=[];
-//var motor=[];
-//var modelo=[];
-//var tiporeparacion=[];
-//var estancia=[];
 var w=0;
 var y=0;
 var filter6=/^([0-9])*$/;
@@ -27,6 +22,7 @@ var ver=new boolean(true);
 var vermotor=new boolean(true);
 var vermodelo=new boolean(true);
 var vertiporeparacion=new boolean(true);
+var vertiporeparacion2=new boolean(true);
 var verestancia=new boolean(true);
 var numeromodificar=0;
 
@@ -41,8 +37,6 @@ var valmodificartipo2=new boolean(false);
 function llamada (){//esta parte controla el numero de bastidor
 
 vas=document.getElementById("in2").value;
-
-
 
                        
                        ver=filter6.test(vas);
@@ -69,46 +63,68 @@ if(y==0&&w>0){
 
 alert("Nuevo usuario, bienvenido");
 y++;
-coche.bastidor=vas;
-
-coches.push({bastidor:vas});
-alert(coches[0].bastidor);
-
+vastidor.push(vas);
 document.getElementById("entradas").style.visibility = "visible"; 
 in3.value=in2.value;
+estancia.push("si");
+
+
 
 }else{
 
 if (w>1) {
-coche.vastidor.push(vas);
 
-for (var i = 1; i<vastidor.length; i++) {
-    if (vas==vastidor[i-1].trim()) {alert("Coche ya esta registrado en la bbdd, modificar campos"); 
+for (var i = 0; i<vastidor.length; i++) {
+    if (vas==vastidor[i]&&estancia[i]=="si") {
+
+var veralerta=new boolean(true);       
+        
+        do {
+        
+var alerta=prompt("Coche ya esta registrado en el taller, desea moficar registro");
+alerta=alerta.toLowerCase();
+if (alerta=="si"||alerta=="no") {
+    veralerta=false;
+}
+
+ }while(veralerta==true);
+    
+if (alerta=="no") {
+    document.getElementById("in2").value="";
+    document.getElementById("in2").focus();
+
+} else {
+
     document.getElementById("modificar").style.visibility = "visible";
     document.getElementById("entradas").style.visibility = "hidden"; 
 
-       in12.value=coche.vastidor[i-1];
-       in8.value=coche.motor[i-1];
-       in9.value=coche.modelo[i-1];
-       in10.value=coche.tiporeparacion[i-1];
-       in11.value=coche.estancia[i-1];
-       numeromodificar=i-1;
-       i=coche.vastidor.length;
-       coche.vastidor.splice(i-1);
+       in12.value=coches[i].bastidor;
+       in8.value=coches[i].motor;
+       in9.value=coches[i].modelo;
+       in10.value=coches[i].tiporeparacion;
+       i=vastidor.length;
+    
+}
+
 
     
        
-} else {if(i==coche.vastidor.length-1){
 
+    
+       
+} else {
+vastidor.push(vas);
+estancia.push("si");
 alert("Entrada nueva");
 in3.value=in2.value;
+i=vastidor.length;
 document.getElementById("entradas").style.visibility = "visible"; 
+
 }
 }
 }
 }
-}
-window.reload();
+
 }
 
 
@@ -116,12 +132,12 @@ function resmotor(){// controla si es diesel y gasolina
     mot=document.getElementById("in4").value;
     mot=mot.toLowerCase();
     vermotor=filter7.test(mot);
-    alert(mot);
+    
                         
                         if((vermotor==true)&&((mot=="diesel")||(mot=="gasolina"))){
                                           
                             
-                            coche.motor.push(mot);
+                            
                             
                                
                         }
@@ -141,8 +157,7 @@ function resmotor(){// controla si es diesel y gasolina
                         
                         if(vermodelo==true){
                                           
-                            
-                            coche.modelo.push(mod);
+                                                       
                                
                         }
                         else{
@@ -163,7 +178,7 @@ function resmotor(){// controla si es diesel y gasolina
                         if((vertiporeparacion==true)&&((rep=="chapa")||(rep=="pintura"))){
                                           
                             
-                            coche.tiporeparacion.push(rep);
+                            
                                
                         }
                         else{
@@ -175,89 +190,105 @@ function resmotor(){// controla si es diesel y gasolina
                     }
 
 
-                    function resestancia(){
-                        est=document.getElementById("in7").value;
-                        est=est.toLowerCase();
-    verestancia=filter7.test(est);
+                    function resrepara2(){
+                        rep2=document.getElementById("in10").value;
+                        rep2=rep2.toLowerCase();
+    vertiporeparacion2=filter7.test(rep2);
     
                         
-                        if((verestancia==true)&&((est=="si")||(est=="no"))){
+                        if((vertiporeparacion2==true)&&((rep2=="chapa")||(rep2=="pintura"))){
                                           
                             
-                            coche.estancia.push(est);
+                            
                                
                         }
                         else{
-                                alert("Debes introducir si el coche esta en taller");
-                                document.getElementById("in7").value="";
-                                document.getElementById("in7").focus();
+                                alert("Debes introducir si es una reparacion de chapa o pintura");
+                                document.getElementById("in10").value="";
+                                document.getElementById("in10").focus();
                                 
                         }
                     }
+
+
+                    
 
 
 function resalta(){
 
     alert("alta realizada correctamente");
     //falta comprobar que estan todos rellenos   
+
+    var coche={};
+    var x1=document.getElementById("in3").value;
+    var x2=document.getElementById("in4").value;
+    var x3=document.getElementById("in5").value;
+    var x4=document.getElementById("in6").value;
+    var x5;
     
+    coche.bastidor=x1;
+    coche.motor=x2;
+    coche.modelo=x3;
+    coche.tiporeparacion=x4;
+   
+    for (var i = 0; i < vastidor.length; i++) {
+        if (x1==vastidor[i]) {
+            x5=estancia[i];
+            i=vastidor.length;
+        }
+            }
+    coche.estancia=x5;
+
+    coches.push(coche);
+
     
+
+          document.getElementById("in3").value="";
+          document.getElementById("in4").value="";
+          document.getElementById("in5").value="";
+          document.getElementById("in6").value="";
+          document.getElementById("in2").value="";
+          document.getElementById("in2").focus();
+          document.getElementById("entradas").style.visibility = "hidden";
 }
 
 function modificartipo (){
 
+var z=document.getElementById("in12").value;
 
+var x1=document.getElementById("in10").value;
+var x2;
+var x3;
+for ( i = 0; i < coches.length; i++) {
+    if (z==coches[i].bastidor) {
+        x2=coches[i].tiporeparacion;
+        i=coches.length;
+    }     
+}
 
-if (tiporeparacion [numeromodificar]==in10.value) {
+if (x1==x2||x1.length<1) {
 
-    alert("modificar el registro");
+    alert("no esta modicando regitro correctamente");
     document.getElementById("in10").value="";
     document.getElementById("in10").focus();
 
-if((in10.value=="chapa")||(in10.value=="pintura")){
-    document.getElementById("in10").value="";
-    document.getElementById("in10").focus();
-
-    
-} 
 }else{
-    
-    tiporeparacion [numeromodificar]==in10.value;
-    
-    valmodificartipo1=true;
+alert("Registro modificado");
+for ( r = 0; r < coches.length; r++) {
+    if (z==coches[r].bastidor) {
+        coches[r].tiporeparacion=document.getElementById("in10").value;
+        r=coches.length;
+        
+    }     
+}
+document.getElementById("in2").focus();
+ document.getElementById("modificar").style.visibility = "hidden";
+
 }
 }
 
-function modificarestancia(){
 
 
-if((in11.value!="si")&&(in11.value!="no")){
-    document.getElementById("in11").value="";
-    document.getElementById("in11").focus();
-} 
-else {
-
-tiporeparacion [numeromodificar]=in11.value;
-
-valmodificartipo2=true;
-
-}
-}
-function modificaralta(){
-
-
-if ((valmodificartipo2==true)&&(valmodificartipo1==true)) {
-    alert("alta realizada la modificacion correctamente ");
-    document.getElementById("modificar").style.visibility = "hidden";
-    
-} else {
-    alert("no ha modificado los datos correctamente");
-   
-
-
-}
-
- }
 
 function consulta (){
 

@@ -141,30 +141,17 @@ in3.value=in2.value;
 }else{
 
 if (w>1) {
-vastidor.push(vas);
 
-for (var i = 1; i<vastidor.length; i++) {
-    if (vas==vastidor[i-1].trim()) {alert("Coche ya esta registrado en la bbdd, modificar campos"); 
-    document.getElementById("modificar").style.visibility = "visible";
-    document.getElementById("entradas").style.visibility = "hidden"; 
-
-       in12.value=vastidor=[i-1];
-       in8.value=motor[i-1];
-       in9.value=modelo[i-1];
-       in10.value=tiporeparacion[i-1];
-       in11.value=estancia[i-1];
-       numeromodificar=i-1;
-       i=vastidor.length;
-       vastidor.splice(i-1);
-
+for ( i = 0; i < vastidor.length; i++) {
     
-       
-} else {if(i==vastidor.length-1){
-
-alert("Entrada nueva");
-in3.value=in2.value;
-document.getElementById("entradas").style.visibility = "visible"; 
-}
+if (vas==vastidor[i]){
+    alert("Bastidor ya existe en la base de datos");
+    i=vastidor.length;
+} else {
+    
+    alert("nueva alta")
+    vastidor.push(vas);
+    i=vastidor.length;
 }
 }
 }
@@ -266,6 +253,8 @@ function resalta(){
 }
 
 function modificartipo (){
+
+var x1=
 
 
 
