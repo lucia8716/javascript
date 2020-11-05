@@ -81,12 +81,13 @@ for (var i = 0; i<vastidor.length; i++) {
 
         var alerta;
         do {
-alerta=prompt("Coche ya esta registrado en el taller, desea moficar registro (escriba si o no)");
+alerta=prompt("Coche ya esta encuentra en el taller, desea moficar registro (escriba si o no)");
 alerta=alerta.toLowerCase();
         }while(alerta!="si"&&alerta!="no");
 
 if(alerta=="si"){
 
+    alert("el formulario se encuentra en la parte inferior de sitio web");
     document.getElementById("in12").value=coches[i].bastidor;
     document.getElementById("in8").value=coches[i].motor;
     document.getElementById("in9").value=coches[i].modelo;
@@ -240,15 +241,14 @@ function resalta(){
         //validar campos de validacion con un for
 
 
-        for ( bam = 0; bam < 1000; bam++) {
+       
             
-            if (x1!="") {
+            if (x2==""||x3==""||x4=="") {
 
-                alert("faltan campos por rellenar");
+                alert("faltan campos por rellenar del formulario de altas");
                 
-            }else{bam=1000;}
-            
-        }
+                
+            }else{
 
     
 
@@ -268,6 +268,7 @@ function resalta(){
           document.getElementById("in2").value="";
           document.getElementById("in2").focus();
           document.getElementById("entradas").style.visibility = "hidden";
+            }
 }
 
 function modificartipo (){
@@ -312,73 +313,84 @@ document.getElementById("in2").value="";
 function consulta (){
 
 
-if (vastidor.length==0) {
-
-    Document.write("No hay registros");
-    alert("mario");
+if (coches.length==0) {
+    alert("no hay registros de coches");
     
-}
+}else{
 
+ document.write("Coches con reparacion de chapa:"+"</br>"+"</br>");
+for (i = 0; i < coches.length; i++) {
 
+if (coches[i].tiporeparacion=="chapa") {
 
-for (i = 0; i < vastidor.length; i++) {
-
-if (tiporeparacion[i]=="chapa") {
-
-Document.write("Numero de bastidor"+vastidor[i]+" "+"tipo de reparacion"+tiporeparacion[i]);
-
-
-    
-} else {
-
-Document.write("Numero de bastidor"+vastidor[i]+" "+"tipo de reparacion"+tiporeparacion[i]);
-    
-}
-
-    
-    
-}
-
-
-
-
+document.write("Numero de bastidor"+" "+coches[i].bastidor+" "+"tipo de reparacion"+" "+coches[i].tiporeparacion+"</br>");
 
 }
+}
+document.write("</br>"+"</br>");
+document.write("Coches con reparacion de pintura:"+"</br>"+"</br>");
+for (i = 0; i < coches.length; i++) {
+        
+    if (coches[i].tiporeparacion=="pintura") {
+    document.write("Numero de bastidor"+" "+coches[i].bastidor+" "+"tipo de reparacion"+" "+coches[i].tiporeparacion+"</br>");
+    }
+    }
+}
+}
 
+function resalidas(){
 
+    if (coches.length==0) {
+        alert("no hay registros de coches");
+        
+    }
 
-function resalidas (){//no esta completo del todo
-
-
-    document.getElementById("salidas").style.visibility = "visible"; 
-    var a =document.getElementById("in18").value;
-   var v=1;
-
-for ( i = 0; i < vastidor.length; i++) {
-    
-if (a==vastidor[i]&&estancia[i]=="si"){
-
-    estancia[i]="no";
-
-    alert ("coche dado de salida")
-
-    v=0;
-
+    if (coches.length>0) {
+        alert("el formulario se encuentra en la parte inferior de sitio web");
+        document.getElementById("salidas").style.visibility = "visible";
+        
+    }
 
 }
 
-if (v>0) { alert("no hay registros");
+function dardebaja(){
+
+    for (var i = 0; i < coches.length; i++) {
+        if (vas==vastidor[i]&&estancia[i]=="si") {
     
-} else {
+            estancia[i]="no";
+            coches[i].estancia="no";
     
+            alert("coche dado de salida del taller");
+            alert("vuelta al formulario inicial");
+            i=coches.length;
+            document.getElementById("in18").value="";
+            document.getElementById("salidas").style.visibility = "hidden";
+               
+        }
+        if (vas==vastidor[i]&&estancia[i]=="no") {
+    
+            alert("el coche ya no se encuentra en el taller");
+            alert("vuelta al formulario inicial");
+            i=coches.length;
+            document.getElementById("in18").value="";
+            document.getElementById("salidas").style.visibility = "hidden";
+     
+if (vas!=vastidor[i]) {
+    alert("no existen registros de ese coche");
+    i=coches.length;
+    document.getElementById("in18").value="";
 }
 
 
+         }
+        
+
+
+
+    }
     
-}
-
-
+    
 
 }
-
 
