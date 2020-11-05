@@ -355,6 +355,8 @@ function resalidas(){
 
 function dardebaja(){
 
+    //revisar variable vas
+
     for (var i = 0; i < coches.length; i++) {
         if (vas==vastidor[i]&&estancia[i]=="si") {
     
