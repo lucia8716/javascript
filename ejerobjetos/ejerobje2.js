@@ -30,10 +30,6 @@ var numeromodificar=0;
 var valmodificartipo1=new boolean(false);
 var valmodificartipo2=new boolean(false);
 
-
-
-
-
 function llamada (){//esta parte controla el numero de bastidor
 
 vas=document.getElementById("in2").value;
@@ -41,7 +37,7 @@ vas=document.getElementById("in2").value;
                        
                        ver=filter6.test(vas);
                         
-                        if(ver==true&&vas.length==12){
+                        if(ver==true&&vas.length==12&&vas>0){
                                                     
                           w++;
                           
@@ -61,11 +57,12 @@ vas=document.getElementById("in2").value;
 
 if(y==0&&w>0){
 
-alert("Nuevo usuario, bienvenido");
+alert("Alta nueva en el taller");
 y++;
 vastidor.push(vas);
 document.getElementById("entradas").style.visibility = "visible"; 
 in3.value=in2.value;
+document.getElementById("in4").focus();
 estancia.push("si");
 
 
@@ -81,7 +78,7 @@ for (var i = 0; i<vastidor.length; i++) {
 
         var alerta;
         do {
-alerta=prompt("Coche ya esta encuentra en el taller, desea moficar registro (escriba si o no)");
+alerta=prompt("Coche ya se encuentra en el taller, desea moficar registro (escriba si o no)");
 alerta=alerta.toLowerCase();
         }while(alerta!="si"&&alerta!="no");
 
@@ -94,6 +91,7 @@ if(alerta=="si"){
     document.getElementById("in10").value=coches[i].tiporeparacion;
     i=vastidor.length;
 document.getElementById("modificar").style.visibility = "visible"; 
+document.getElementById("in10").focus();
 }
 
 if(alerta=="no"){
@@ -104,16 +102,13 @@ if(alerta=="no"){
     document.getElementById("in2").focus();
 }
 
-
-
-
-
 } else {
 vastidor.push(vas);
 estancia.push("si");
-alert("Entrada nueva");
+alert("Alta nueva en el taller");
 in3.value=in2.value;
 i=vastidor.length;
+document.getElementById("in4").focus();
 document.getElementById("entradas").style.visibility = "visible";
 
 }
@@ -173,14 +168,14 @@ function resmotor(){// controla si es diesel y gasolina
     vertiporeparacion=filter7.test(rep);
     
                         
-                        if((vertiporeparacion==true)&&((rep=="chapa")||(rep=="pintura"))){
+                        if((vertiporeparacion==true)&&((rep=="chapa")||(rep=="mecanica"))){
                                           
                             
                             
                                
                         }
                         else{
-                                alert("Debes introducir si es una reparacion de chapa o pintura");
+                                alert("Debes introducir si es una reparacion de chapa o mecanica");
                                 document.getElementById("in6").value="";
                                 document.getElementById("in6").focus();
                                 
@@ -194,14 +189,14 @@ function resmotor(){// controla si es diesel y gasolina
     vertiporeparacion2=filter7.test(rep2);
     
                         
-                        if((vertiporeparacion2==true)&&((rep2=="chapa")||(rep2=="pintura"))){
+                        if((vertiporeparacion2==true)&&((rep2=="chapa")||(rep2=="mecanica"))){
                                           
                             
                             
                                
                         }
                         else{
-                                alert("Debes introducir si es una reparacion de chapa o pintura");
+                                alert("Debes introducir si es una reparacion de chapa o mecanica");
                                 document.getElementById("in10").value="";
                                 document.getElementById("in10").focus();
                                 
@@ -328,10 +323,10 @@ document.write("Numero de bastidor"+" "+coches[i].bastidor+" "+"tipo de reparaci
 }
 }
 document.write("</br>"+"</br>");
-document.write("Coches con reparacion de pintura:"+"</br>"+"</br>");
+document.write("Coches con reparacion de mecanica:"+"</br>"+"</br>");
 for (i = 0; i < coches.length; i++) {
         
-    if (coches[i].tiporeparacion=="pintura") {
+    if (coches[i].tiporeparacion=="mecanica") {
     document.write("Numero de bastidor"+" "+coches[i].bastidor+" "+"tipo de reparacion"+" "+coches[i].tiporeparacion+"</br>");
     }
     }
@@ -355,10 +350,15 @@ function resalidas(){
 
 function dardebaja(){
 
-    //revisar variable vas
+    //revisar variable var
+
+var z=document.getElementById("in18").value;
+
+
+
 
     for (var i = 0; i < coches.length; i++) {
-        if (vas==vastidor[i]&&estancia[i]=="si") {
+        if (z==coches[i].bastidor&&coches[i].estancia=="si") {
     
             estancia[i]="no";
             coches[i].estancia="no";
@@ -367,29 +367,46 @@ function dardebaja(){
             alert("vuelta al formulario inicial");
             i=coches.length;
             document.getElementById("in18").value="";
+            document.getElementById("in2").focus();
             document.getElementById("salidas").style.visibility = "hidden";
                
         }
-        if (vas==vastidor[i]&&estancia[i]=="no") {
+        if (z==coches[i].bastidor&&coches[i].estancia=="no") {
     
             alert("el coche ya no se encuentra en el taller");
             alert("vuelta al formulario inicial");
             i=coches.length;
             document.getElementById("in18").value="";
+            document.getElementById("in2").focus();
             document.getElementById("salidas").style.visibility = "hidden";
-     
-if (vas!=vastidor[i]) {
-    alert("no existen registros de ese coche");
-    i=coches.length;
-    document.getElementById("in18").value="";
-}
-
-
-         }
+       }
         
+         alert("no existen registros de ese coche");
+
+         var pregunta;
+         do {
+            pregunta=prompt("¿Desea volver a la pagina inicial? (Escriba si o no)");
+            pregunta=pregunta.toLowerCase();
+                    }while(pregunta!="si"&&pregunta!="no");
 
 
+         
 
+         if (pregunta=="si") {
+            document.getElementById("in18").value="";
+            document.getElementById("in2").focus();
+            document.getElementById("salidas").style.visibility = "hidden";
+            i=coches.length;
+             
+         } else {
+
+         document.getElementById("in18").value="";
+         document.getElementById("in18").focus();
+         i=coches.length;
+             
+         }
+
+         
     }
     
     
