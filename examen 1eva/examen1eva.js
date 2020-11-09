@@ -10,7 +10,6 @@ var pro4 ={refpro:4,nombrecomun:'finasterina',composicion:'finasterida',laborato
 
 var productos =[pro,pro2,pro3,pro4];
 
-
 function compras (){
     
     document.getElementById("f1").style.visibility = "hidden";
