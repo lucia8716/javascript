@@ -24,6 +24,12 @@ div{
   }
   
     
+
+  input:invalid:required {
+    background-image: linear-gradient(to right, pink, lightgreen);
+  }
+
+
   div select
   {
     width:320px;
