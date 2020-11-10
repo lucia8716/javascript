@@ -7,28 +7,41 @@ var pro2 ={refpro:2,nombrecomun:'ibuprofeno',composicion:'ibuprofeno',laboratori
 var pro3 ={refpro:3,nombrecomun:'fosrenol',composicion:'lantano',laboratorio:'shire',preciocompra:6.74,precioventa:9.87,unidades:45};
 var pro4 ={refpro:4,nombrecomun:'finasterina',composicion:'finasterida',laboratorio:'Piffer',preciocompra:13.74,precioventa:23.87,unidades:14};
 var productos =[pro,pro2,pro3,pro4];
-var referencia=[];
+var referencia=[1,2,3,4];
 var contfuncioncompras=0;
-
+var filtronum=/^[0-9]+(\.[0-9]{1,2})*$/;
+var filtrolet=/^([a-zA-Z])*$/;
+var filnumenteros=/^([0-9])*$/;
 
 function iracompras(){
 
     document.getElementById("f1").style.visibility = "hidden";
     document.getElementById("f2").style.visibility = "visible";
+    document.getElementById("i1").value="";
+    document.getElementById("i1").focus();
+}
+
+function iraltanueva(){
+    document.getElementById("f1").style.visibility = "hidden";
+    document.getElementById("f2").style.visibility = "hidden";
+    document.getElementById("f3").style.visibility = "visible";
+}
+function compras (){
+var x1=document.getElementById("i1").value;
+var verx1=filnumenteros.test(x1);
+
+
+if (verx1==true) {
+    
+} else {
+    document.getElementById("i1").value="";
+    document.getElementById("i1").focus();
+    alert("Nº Referencia no valido");
+    
 }
 
 
-
-function compras (){
-var x1=document.getElementById("i1").value;
-if(x1>0&&x1<999999999999){
-if (contfuncioncompras==0) {
-    referencia.push(x1);
-    contfuncioncompras++;
-    document.getElementById("i1").value="";
-       
-} else {
-var cont=0;
+if(x1>0&&x1<999999999999&&verx1==true){
 var comprobar=false;
     for ( i = 0; i < referencia.length; i++) {
         if (x1==referencia[i]) {
@@ -42,21 +55,103 @@ var comprobar=false;
 
             alert("Nº Referencia no se encuentra en bbdd");
             referencia.push(x1);
+            iraltanueva();
+            document.getElementById("i2").value=document.getElementById("i1").value;
         }
-       
 
-
-
-
-
-    }
-
-}else{
-    document.getElementById("i1").value="";
-    document.getElementById("i1").focus();
-    alert("incorrecto");
+}else{document.getElementById("i1").value="";
+document.getElementById("i1").focus();
+alert("Nº Referencia no valido");}
 }
+
+function altanueva(){
+    
+    x2=document.getElementById("i2").value;
+    x3=document.getElementById("i3").value;
+    x4=document.getElementById("i4").value;
+    x5=document.getElementById("i5").value;
+    x6=document.getElementById("i6").value;
+    x7=document.getElementById("i7").value;
+    x8=document.getElementById("i8").value;
+
+    
+    x3=x3.toLowerCase();
+    verx3=filtrolet.test(x3);
+    x4=x4.toLowerCase();
+    verx4=filtrolet.test(x4);
+    x5=x5.toLowerCase();
+    verx5=filtrolet.test(x5);
+    verx6=filtronum.test(x6);
+    verx7=filtronum.test(x7);
+    verx8=filnumenteros.test(x8);
+    
+    if (verx3==true) {
+        
+    } else {
+        document.getElementById("i3").value="";
+     }
+
+     if (verx4==true) {
+        
+    } else {
+        document.getElementById("i4").value="";
+     }
+
+     if (verx5==true) {
+        
+    } else {
+        document.getElementById("i5").value="";
+     }
+     
+     if (verx6==true) {
+        
+    } else {
+        document.getElementById("i6").value="";
+     }
+
+     if (verx7==true) {
+        
+    } else {
+        document.getElementById("i7").value="";
+     }
+
+     if (verx8==true) {
+        
+    } else {
+        document.getElementById("i8").value="";
+     }
+
+
+     x7=parseFloat(x7).toFixed(2);
+     x6=parseFloat(x6).toFixed(2);
+
+if (document.getElementById("i7").value<=document.getElementById("i6").value) {
+    alert("El precio de venta no puede ser menor o igual al precio de compra")
+    document.getElementById("i7").value="";
 }
+
+
+if (x8.length==0||x7.length==0||x6.length==0||x5.length==0||x4.length==0||x3.length==0) {
+
+alert("Faltan campos por rellenar correctamente");
+
+} else {
+
+  //  var pro4 ={refpro:x2,nombrecomun:x3,composicion:x4,laboratorio:x5,preciocompra:x6,precioventa:x7,unidades:x8};
+
+//productos.push(pro4);
+    
+}
+
+
+}
+
+
+
+
+
+
+
 
 
 
