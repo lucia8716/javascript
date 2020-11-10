@@ -34,9 +34,15 @@ var comprobar=false;
         if (x1==referencia[i]) {
             i=referencia.length;
         alert("Nº Referencia se encuentra en bbdd");
+        comprobar=true;
         } 
         }
 
+        if(comprobar==false){
+
+            alert("Nº Referencia no se encuentra en bbdd");
+            referencia.push(x1);
+        }
        
 
 
