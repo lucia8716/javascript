@@ -45,14 +45,20 @@ if(x1>0&&x1<999999999999&&verx1==true){
 var comprobar=false;
     for ( i = 0; i < referencia.length; i++) {
         if (x1==referencia[i]) {
-            i=referencia.length;
+            
         alert("Nº Referencia se encuentra en bbdd");
         comprobar=true;
         compraryaregistrado();
+        document.getElementById("i9").value=productos[i].refpro;
+        document.getElementById("i10").value=productos[i].nombrecomun;
+        document.getElementById("i11").value=productos[i].composicion;
+        document.getElementById("i12").value=productos[i].laboratorio;
+        document.getElementById("i13").value=productos[i].preciocompra;
+        document.getElementById("i14").value=productos[i].precioventa;
+        document.getElementById("i15").value=productos[i].unidades;        
+        i=referencia.length;
 
 
-
-        
         } 
         }
 
