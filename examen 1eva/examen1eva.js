@@ -139,7 +139,7 @@ function altanueva(){
      x7=parseFloat(x7).toFixed(2);
      x6=parseFloat(x6).toFixed(2);
 
-if (document.getElementById("i7").value<=document.getElementById("i6").value) {
+if (Number(document.getElementById("i7").value)<=Number(document.getElementById("i6").value)) {
     alert("El precio de venta no puede ser menor o igual al precio de compra")
     document.getElementById("i7").value="";
 }
@@ -477,18 +477,27 @@ function ventaunidades(){
 
 function irapedidos(){
 
+    var productos2=productos.slice();
     
     document.getElementById("f1").style.visibility = "hidden";
     document.getElementById("f11").style.visibility = "visible";
     document.getElementById("f12").style.visibility = "visible";
 
-    for(i=0;i<productos.length;i++){
+    
+    productos2.sort(function (a, b) {
+        return ('' + a.laboratorio).localeCompare(b.laboratorio);
+    })
+    
 
-        if (productos[i].unidades<6&&productos[i].unidades>0) {
-            
-        
-        pruen="<strong>Nº Referencia</strong>"+productos[i].refpro + " "+"<strong>Nombre comun</strong>"+productos[i].nombrecomun+ " "+"<strong>Composicion</strong>"+productos[i].composicion+ " "+"<strong>Laboratorio</strong>"+productos[i].laboratorio+ " "+"<strong>Precio Compra</strong>"+productos[i].preciocompra+ " "+"<strong>Precio venta</strong>"+ " "+productos[i].precioventa+ " "+"<strong>Unidades en stock</strong>"+productos[i].unidades+"</br>";
-        document.getElementById("f12").innerHTML +=pruen;
+    for(i=0;i<productos2.length;i++){
+
+        if (productos2[i].unidades<6&&productos2[i].unidades>0) {
+
+           
+                        
+      pruen="<strong>Nº Referencia</strong>"+productos2[i].refpro + " "+"<strong>Nombre comun</strong>"+productos2[i].nombrecomun+ " "+"<strong>Composicion</strong>"+productos2[i].composicion+ " "+"<strong>Laboratorio</strong>"+productos2[i].laboratorio+ " "+"<strong>Precio Compra</strong>"+productos2[i].preciocompra+ " "+"<strong>Precio venta</strong>"+ " "+productos2[i].precioventa+ " "+"<strong>Unidades en stock</strong>"+productos2[i].unidades+"</br>";
+              
+        document.getElementById("f12").innerHTML += pruen
         }
     }
     
