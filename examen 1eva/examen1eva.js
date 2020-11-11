@@ -10,7 +10,7 @@ var productos =[pro,pro2,pro3,pro4];
 var referencia=[1,2,3,4];
 var contfuncioncompras=0;
 var filtronum=/^[0-9]+(\.[0-9]{1,2})*$/;
-var filtrolet=/^([a-zA-Z])*$/;
+var filtrolet=/^(?!.* (?: |$))[a-z ]+$/;
 var filnumenteros=/^([0-9])*$/;
 
 function iracompras(){
@@ -48,6 +48,11 @@ var comprobar=false;
             i=referencia.length;
         alert("Nº Referencia se encuentra en bbdd");
         comprobar=true;
+        compraryaregistrado();
+
+
+
+        
         } 
         }
 
@@ -130,26 +135,63 @@ if (document.getElementById("i7").value<=document.getElementById("i6").value) {
     document.getElementById("i7").value="";
 }
 
+if (document.getElementById("i8").value<=0) {
+    alert("Las unidades de compra tienen que ser superiores a 0")
+    document.getElementById("i8").value="";
+}
 
-if (x8.length==0||x7.length==0||x6.length==0||x5.length==0||x4.length==0||x3.length==0) {
+
+if ((x8.length==0||document.getElementById("i8").value<=0)||(x7.length==0||document.getElementById("i7").value<=0)||(x6.length==0||document.getElementById("i6").value<=0)||(x5.length==0||verx5==false)||(x4.length==0||verx4==false)||(x3.length==0||verx3==false)) {
 
 alert("Faltan campos por rellenar correctamente");
 
 } else {
 
-  //  var pro4 ={refpro:x2,nombrecomun:x3,composicion:x4,laboratorio:x5,preciocompra:x6,precioventa:x7,unidades:x8};
+var pro4 ={refpro:x2,nombrecomun:x3,composicion:x4,laboratorio:x5,preciocompra:x6,precioventa:x7,unidades:x8};
 
-//productos.push(pro4);
-    
+productos.push(pro4);
+
+alert("Compra del medicamento realizada correctamente");
+document.getElementById("i2").value="";
+document.getElementById("i3").value="";
+document.getElementById("i4").value="";
+document.getElementById("i5").value="";
+document.getElementById("i6").value="";
+document.getElementById("i7").value="";
+document.getElementById("i8").value="";
+document.getElementById("i1").value="";
+document.getElementById("i1").focus();
+document.getElementById("f1").style.visibility = "hidden";
+    document.getElementById("f2").style.visibility = "visible";
+    document.getElementById("f3").style.visibility = "hidden";
+
+}
+
 }
 
 
+function salir(){
+    document.getElementById("f1").style.visibility = "visible";
+    document.getElementById("f2").style.visibility = "hidden";
+    document.getElementById("f3").style.visibility = "hidden";
+
+
 }
 
 
+function compraryaregistrado(){
+    document.getElementById("f1").style.visibility = "hidden";
+    document.getElementById("f2").style.visibility = "hidden";
+    document.getElementById("f3").style.visibility = "hidden";
+    document.getElementById("f4").style.visibility = "visible";
 
 
 
+
+
+
+
+}
 
 
 
