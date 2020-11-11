@@ -13,7 +13,7 @@ var filtronum=/^[0-9]+(\.[0-9]{1,2})*$/;
 var filtrolet=/^(?!.* (?: |$))[a-z ]+$/;
 var filnumenteros=/^([0-9])*$/;
 
-function iracompras(){
+function iracompras(){// utilizado para quitar y poner capas
 
     document.getElementById("f1").style.visibility = "hidden";
     document.getElementById("f2").style.visibility = "visible";
@@ -21,12 +21,12 @@ function iracompras(){
     document.getElementById("i1").focus();
 }
 
-function iraltanueva(){
+function iraltanueva(){// utilizado para quitar y poner capas
     document.getElementById("f1").style.visibility = "hidden";
     document.getElementById("f2").style.visibility = "hidden";
     document.getElementById("f3").style.visibility = "visible";
 }
-function compras (){
+function compras (){// utilizado para validar la parte de compras
 var x1=document.getElementById("i1").value;
 var verx1=filnumenteros.test(x1);
 
@@ -183,6 +183,7 @@ function salir(){
     document.getElementById("f1").style.visibility = "visible";
     document.getElementById("f2").style.visibility = "hidden";
     document.getElementById("f3").style.visibility = "hidden";
+    document.getElementById("f7").style.visibility = "hidden";
 
 
 }
@@ -204,11 +205,18 @@ alert("Introduzca un numero valido")
     
 } else {
 
+var z;
+var f=document.getElementById("i1").value;
+var h=document.getElementById("i16").value;
+
     for (i = 0; i < referencia.length; i++) {
     
-        if (x1==productos[i].refpro) {
-                        
-            productos[i].unidades=Number(productos[i].unidades)+Number(x1);
+        if (f==productos[i].refpro) {
+
+            z=productos[i].unidades;
+                                
+            productos[i].unidades=Number(h)+Number(z);
+            
             i=referencia.length;
         }
     }
@@ -239,15 +247,101 @@ document.getElementById("f4").style.visibility = "hidden";
 
 }
 
+function volver (){
+    document.getElementById("f1").style.visibility = "hidden";
+    document.getElementById("f2").style.visibility = "visible";
+    document.getElementById("f3").style.visibility = "hidden";
+    document.getElementById("f4").style.visibility = "hidden";
+    document.getElementById("f5").style.visibility = "hidden";
+    document.getElementById("f6").style.visibility = "hidden";
+    document.getElementById("f7").style.visibility = "hidden";
+    document.getElementById("f6").innerHTML ='';
+    s
+}
+
+var cont=0;
+var pruen;
+
+function visualizar (){//boton de que muestra los productos, tengo un problema con las unidades ya que no muestra las actulizaciones productos
+
+    document.getElementById("f1").style.visibility = "hidden";
+    document.getElementById("f2").style.visibility = "hidden";
+    document.getElementById("f3").style.visibility = "hidden";
+    document.getElementById("f4").style.visibility = "hidden";
+    document.getElementById("f7").style.visibility = "hidden";
+    document.getElementById("f5").style.visibility = "visible";
+    document.getElementById("f6").style.visibility = "visible";
 
 
-function visualizar (){
+    for(i=0;i<productos.length;i++){
 
-for ( i = 0; i < productos.length; i++) {
-    
-    document.write(productos[i].refpro+" "+productos[i].nombrecomun+" "+productos[i].composicion+" "+productos[i].laboratorio+" "+productos[i].preciocompra+" "+productos[i].precioventa+" "+productos[i].unidades+"</br>");
-    
+        pruen="<strong>Nº Referencia</strong>"+productos[i].refpro + " "+"<strong>Nombre comun</strong>"+productos[i].nombrecomun+ " "+"<strong>Composicion</strong>"+productos[i].composicion+ " "+"<strong>Laboratorio</strong>"+productos[i].laboratorio+ " "+"<strong>Precio Compra</strong>"+productos[i].preciocompra+ " "+"<strong>Precio venta</strong>"+ " "+productos[i].precioventa+ " "+"<strong>Unidades en stock</strong>"+productos[i].unidades+"</br>";
+        document.getElementById("f6").innerHTML +=pruen;
+    cont++;
+    }
+   
 }
 
 
+function iraventas(){
+
+    
+    document.getElementById("f1").style.visibility = "hidden";
+    document.getElementById("f7").style.visibility = "visible";
+    document.getElementById("i17").value="";
+    document.getElementById("i17").focus();
+
+}
+
+
+function ventas(){
+
+    var x25=document.getElementById("i25").value;
+    var verx25=filnumenteros.test(x25);
+    
+    
+    if (verx25==true) {
+        
+    } else {
+        document.getElementById("i25").value="";
+        document.getElementById("i25").focus();
+        alert("Nº Referencia no valido");
+        
+    }
+    
+    
+    if(x25>0&&x25<999999999999&&verx25==true){
+    var comprobar=false;
+        for ( i = 0; i < referencia.length; i++) {
+            if (x25==referencia[i]) {
+                
+            alert("Nº Referencia se encuentra en bbdd");
+            comprobar=true;
+            document.getElementById("i9").value=productos[i].refpro;
+            document.getElementById("i10").value=productos[i].nombrecomun;
+            document.getElementById("i11").value=productos[i].composicion;
+            document.getElementById("i12").value=productos[i].laboratorio;
+            document.getElementById("i13").value=productos[i].preciocompra;
+            document.getElementById("i14").value=productos[i].precioventa;
+            document.getElementById("i15").value=productos[i].unidades;        
+            i=referencia.length;
+            document.getElementById("f1").style.visibility = "hidden";
+            document.getElementById("f2").style.visibility = "hidden";
+            document.getElementById("f3").style.visibility = "hidden";
+            document.getElementById("f4").style.visibility = "visible";
+    
+    
+            }    
+}
+if(comprobar==false){
+
+    alert("Nº Referencia no se encuentra en bbdd");
+    referencia.push(x1);
+    iraltanueva();
+    document.getElementById("i2").value=document.getElementById("i1").value;
+}
+
+}else{document.getElementById("i1").value="";
+document.getElementById("i1").focus();
+alert("Nº Referencia no valido");}
 }
