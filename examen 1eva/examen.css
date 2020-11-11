@@ -1,4 +1,4 @@
- #f5 {
+ #f5,#f9,#f11 {
     width:80%;
     padding:16px;
     border-radius:10px;
@@ -6,7 +6,7 @@
     background-color:#ccc;
   }
 
-  #f6 {
+  #f6,#f10,#f12 {
     width:100%;
     padding:16px;
     border-radius:10px;
@@ -62,7 +62,7 @@
     
   }
      
-  #f2,#f3,#f4,#f5,#f6,#f7,#f8{
+  #f2,#f3,#f4,#f5,#f6,#f7,#f8,#f9,#f10,#f11,#f12{
   
     visibility: hidden;
   }
@@ -90,7 +90,7 @@
     background-color:#000;
   } 
   
-  #f5 button{
+  #f5 button,#f9 button,#f11 button{
     width:10%;
     padding:8px 16px;
     margin-top:32px;
