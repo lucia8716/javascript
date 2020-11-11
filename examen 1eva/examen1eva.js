@@ -48,7 +48,6 @@ var comprobar=false;
             
         alert("Nº Referencia se encuentra en bbdd");
         comprobar=true;
-        compraryaregistrado();
         document.getElementById("i9").value=productos[i].refpro;
         document.getElementById("i10").value=productos[i].nombrecomun;
         document.getElementById("i11").value=productos[i].composicion;
@@ -57,6 +56,10 @@ var comprobar=false;
         document.getElementById("i14").value=productos[i].precioventa;
         document.getElementById("i15").value=productos[i].unidades;        
         i=referencia.length;
+        document.getElementById("f1").style.visibility = "hidden";
+        document.getElementById("f2").style.visibility = "hidden";
+        document.getElementById("f3").style.visibility = "hidden";
+        document.getElementById("f4").style.visibility = "visible";
 
 
         } 
@@ -186,21 +189,55 @@ function salir(){
 
 
 function compraryaregistrado(){
-    document.getElementById("f1").style.visibility = "hidden";
-    document.getElementById("f2").style.visibility = "hidden";
-    document.getElementById("f3").style.visibility = "hidden";
-    document.getElementById("f4").style.visibility = "visible";
+var x1=document.getElementById("i9").value;  
+var x16=document.getElementById("i16").value;
+varvalx16=filnumenteros.test(x16);
 
 
 
+if ((x16.length==0||varvalx16==false||x16<1)) {
+
+    document.getElementById("i16").value="";
+document.getElementById("i16").focus();
+
+alert("Introduzca un numero valido")
+    
+} else {
+
+    for (i = 0; i < referencia.length; i++) {
+    
+        if (x1==productos[i].refpro) {
+                        
+            productos[i].unidades=Number(productos[i].unidades)+Number(x1);
+            i=referencia.length;
+        }
+    }
+
+alert("Compra realizada con existo");
+
+document.getElementById("i9").value="";
+document.getElementById("i10").value="";
+document.getElementById("i11").value="";
+document.getElementById("i12").value="";
+document.getElementById("i13").value="";
+document.getElementById("i14").value="";
+document.getElementById("i15").value="";
+document.getElementById("i16").value="";
+document.getElementById("i1").value="";
+document.getElementById("i1").focus();
+
+document.getElementById("f1").style.visibility = "hidden";
+document.getElementById("f2").style.visibility = "visible";
+document.getElementById("f3").style.visibility = "hidden";
+document.getElementById("f4").style.visibility = "hidden";
 
 
 
-
+   
+    
 }
 
-
-
+}
 
 
 
