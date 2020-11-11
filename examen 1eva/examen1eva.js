@@ -484,7 +484,7 @@ function irapedidos(){
 
     for(i=0;i<productos.length;i++){
 
-        if (productos[i].unidades<6) {
+        if (productos[i].unidades<6&&productos[i].unidades>0) {
             
         
         pruen="<strong>Nº Referencia</strong>"+productos[i].refpro + " "+"<strong>Nombre comun</strong>"+productos[i].nombrecomun+ " "+"<strong>Composicion</strong>"+productos[i].composicion+ " "+"<strong>Laboratorio</strong>"+productos[i].laboratorio+ " "+"<strong>Precio Compra</strong>"+productos[i].preciocompra+ " "+"<strong>Precio venta</strong>"+ " "+productos[i].precioventa+ " "+"<strong>Unidades en stock</strong>"+productos[i].unidades+"</br>";
@@ -492,5 +492,13 @@ function irapedidos(){
         }
     }
     
+}
+
+function volver3(){
+    document.getElementById("f1").style.visibility = "visible";
+    document.getElementById("f11").style.visibility = "hidden";
+    document.getElementById("f12").style.visibility = "hidden";
+    document.getElementById("f12").innerHTML ='';
+
 
 }
