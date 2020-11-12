@@ -1,13 +1,15 @@
 
   #f5,#f9,#f11 {
-    width:5%;
+    width:10%;
     padding:16px;
     border-radius:10px;
     margin:auto;
+    margin-left: 45%;
     background-color:#ccc;
     margin-bottom: 50px;
   }
 
+  li {list-style:none;}
 
 
 
@@ -15,7 +17,9 @@
     width:100%;
     padding:16px;
     border-radius:10px;
-    margin:auto;
+    margin-top: 120px;
+    margin-left:0px ;
+    margin-right: 0px;
     background-color:#ccc;
     padding-top:10px;
   }
@@ -83,15 +87,14 @@
 }
 
 .posicion2{
-  
+  position: absolute;
   margin-top: 20px;
   margin-bottom: 30px;
   
 }s
 
 .posicion3{
- 
-  
+  position: absolute;
   margin-top: 700px;
   margin-left: 20px;
 }
@@ -124,6 +127,19 @@
   } 
 
 
+  td {
+
+width: 200px;
+text-align: left;
+
+  }
+
+
+  tr{
+
+width: 100%;
+
+  }
 
   div button:hover{
     cursor:pointer;
