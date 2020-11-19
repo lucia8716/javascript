@@ -1,0 +1,105 @@
+
+   img{
+
+    width:600px;
+    height: 400px;
+
+   }
+  div{
+    width:600px;
+    padding:16px;
+    border-radius:10px;
+    margin:auto;
+    background-color:#ccc;
+  }
+
+
+  div label{
+    width:250px;
+    font-weight:bold;
+    display:inline-block;
+  }
+  
+  div input
+  {
+    width:300px;
+    padding:3px 10px;
+    border:1px solid #f6f6f6;
+    border-radius:3px;
+    background-color:#f6f6f6;
+    margin:8px 0;
+    display:inline-block;
+  }
+  
+    
+
+  input:invalid:required {
+    background-image: linear-gradient(to right, pink, lightgreen);
+  }
+
+
+  div select
+  {
+    width:320px;
+    padding:3px 10px;
+    border:1px solid #f6f6f6;
+    border-radius:3px;
+    background-color:#f6f6f6;
+    margin:8px 0;
+    display:inline-block;
+    margin-bottom: 5px;
+    
+    
+  }
+     
+  #f2,#f3,#f4{
+  
+    visibility: hidden;
+  }
+  
+  
+.posicion{
+
+
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 420px;
+
+}
+
+
+
+
+  
+  div button{
+    width:100%;
+    padding:8px 16px;
+    margin-top:32px;
+    border:1px solid #000;
+    border-radius:5px;
+    display:block;
+    color:#fff;
+    background-color:#000;
+  } 
+  
+ 
+
+
+  #f5 button,#f9 button,#f11 button{
+    width:100%;
+    padding:8px 16px;
+    margin-top:32px;
+    border:1px solid #000;
+    border-radius:5px;
+    display:block;
+    color:#fff;
+    background-color:#000;
+  } 
+
+
+
+ 
+
+  div button:hover{
+    cursor:pointer;
+  }
