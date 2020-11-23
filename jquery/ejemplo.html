@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    $("#1").hide(5000);
+    $("#2").hide(15000);
+    $("#3").hide(35000);
+
+});
+
+</script>
+
+
+
+
+
+</head>
+<body>
+<input type="button" value="OCULTAR" onclick="ocultar_img()"> <label></label>
+<input type="button" name="bt2" value="VISUALIZAR" onclick="visualizar_img()">  
+<img id="1" src="1.jpg" style="width:30%; height: 18%; top: 20%;margin: 18%;">
+<img id="2" src="1.jpg" style="width:30%; height: 18%; top: 20%;margin: 18%;">
+<img id="3" src="1.jpg" style="width:30%; height: 18%; top: 20%;margin: 18%;">
+<br>
+<br>
+  
+</body>
+</html>
