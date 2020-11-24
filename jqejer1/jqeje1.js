@@ -17,12 +17,12 @@ function regi(){
 
     if(filterdni.test(x5)==true){
 
-        $("#i2").hide();
-        $("#i3").hide();
-        $("#button2").hide();
-        $("#p2").hide();
+        $("#i2").show();
+        $("#i3").show();
+        $("#button2").show();
+        $("#p1").hide();
         $("#button1").hide();
-        $("#p2").hide();
+        $("#p2").show();
 
     }else{alert("Dni con formato incorrecto");}
    
