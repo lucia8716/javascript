@@ -1,3 +1,5 @@
+//https://www.jqueryscript.net/other/jQuery-Plugin-For-Animated-Stackable-Toast-Messages-Toast.html
+
 var filnom=/^(?!.* (?: |$))[a-z\-]+$/;
 var filtercontraseña=/^([a-zA-Z0-9]){12}/;
 var filtermatricula=/^([0-9]){4}([a-zA-Z]){3}/;
