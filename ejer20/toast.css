@@ -47,8 +47,8 @@
     -webkit-appearance: none;
   }
   .toast-top-center {
-    top: 0;
-    right: 0;
+    top: 70%;
+    right: 3%;
     width: 100%;
   }
   .toast-bottom-center {
@@ -57,9 +57,9 @@
     width: 100%;
   }
   .toast-top-full-width {
-    top: 0;
-    right: 0;
-    width: 100%;
+    top: 40%;
+    right: 36%;
+    width: 30%;
   }
   .toast-bottom-full-width {
     bottom: 0;

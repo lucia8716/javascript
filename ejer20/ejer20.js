@@ -13,22 +13,106 @@ var coche2={matricula:"2592HZV",estancia:"true",marca:"citroen",modelo:"xsara",c
 var coche3={matricula:"2593HZV",estancia:"false",marca:"ford",modelo:"mondeo",color:"azul",nomproo:"patxi",ape1prope:"gallego",ape2prope:"cerezo",email:"patxi@gmail.com"};
 
 var coches=[coche1,coche2,coche3];
+var comp=true;
+
 
 $("#di2").hide();
 $("#di3").hide();
 $("#di4").hide();
+
   function regi(){
+    
+    
     
     x1=$('#i1').val();
     x2=$('#i2').val();
     x2=x2.toLowerCase()
     var registrado=false;
+
+      
+      
+    if(filtercontraseña.test(x1)==false){
+      
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "2000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      Command: toastr["error"]("Contraseña con formato incorrecto");
+  $('#i1').val('');
+  $('#i1').focus();}
+
+
+if(filnom.test(x2)==false){
+    
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "2000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+Command: toastr["error"]("Nombre con formato incorrecto");
+  $('#i2').val('');
+  $('#i2').focus();}
+    
     
     if(filnom.test(x2)==true&&filtercontraseña.test(x1)){
         for (i = 0; i < usuarios.length; i++) {
             if (x2==usuarios[i].usuario&&x1==usuarios[i].contraseña) {
-              Command: toastr["info"]("sesion iniciada")
+              toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+              Command: toastr["success"]("Usuario logueado");
 
+
+                i=usuarios.length;
+                registrado=true;
+                $("#di1").hide();
+                $("#di2").fadeIn(4500);
+                $('#i1').val('');
+            }
+            
+         }
+         for (i = 0; i < usuarios.length; i++) {
+          if (x2==usuarios[i].usuario&&x1!=usuarios[i].contraseña) {
+              
               toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -38,25 +122,18 @@ $("#di4").hide();
                 "preventDuplicates": false,
                 "onclick": null,
                 "showDuration": "300",
-                "hideDuration": "3",
-                "timeOut": "300",
-                "extendedTimeOut": "300",
+                "hideDuration": "1000",
+                "timeOut": "2000",
+                "extendedTimeOut": "1000",
                 "showEasing": "swing",
                 "hideEasing": "linear",
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
               }
-                i=usuarios.length;
-                registrado=true;
-                $("#di1").hide();
-                $("#di2").fadeIn("slow");
-                $('#i1').val('');
-            }
-            
-         }
-         for (i = 0; i < usuarios.length; i++) {
-          if (x2==usuarios[i].usuario&&x1!=usuarios[i].contraseña) {
-              alert("Contraseña de usuario incorrecta, introducir contraseña correcta");
+              Command: toastr["error"]("Contraseña incorrecta");
+
+
+
               i=usuarios.length;
               registrado=true;
               $('#i1').val('');
@@ -69,39 +146,35 @@ $("#di4").hide();
 
     }else{
 
-var comp=true;
       
+    
       
-      if(filtercontraseña.test(x1)==false){
-      
-      alert("Contraseña con formato incorrecto");
-    $('#i1').val('');
-    $('#i1').focus();}
-
-
-if(filnom.test(x2)==false){
-      
-      alert("Nombre con formato incorrecto");
-    $('#i2').val('');
-    $('#i2').focus();}
-
-    if(filnom.test(x2)==true){
-      for ( z = 0; z < coches.length; z++) {
-           
-       if(x2==usuarios[i].usuario){
-         comp=false;
-         
-       }
+     if(comp==true){
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "2000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      Command: toastr["error"]("Usuario no registrado");
+      $('#i2').val('');
+      $('#i2').focus();
+      $('#i1').val('');
+     
      }
-   if(comp==true){
-    alert("Usuario no registrado");
-    $('#i2').val('');
-    $('#i2').focus();
-    $('#i1').val('');
-   }
-   
       
-     }
+     
 
    }
 
