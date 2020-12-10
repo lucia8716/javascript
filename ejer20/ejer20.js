@@ -25,7 +25,25 @@ $("#di4").hide();
     if(filnom.test(x2)==true&&filtercontraseña.test(x1)){
         for (i = 0; i < usuarios.length; i++) {
             if (x2==usuarios[i].usuario&&x1==usuarios[i].contraseña) {
-                alert("Usuario regitrado, sesion iniciada");
+              Command: toastr["info"]("sesion iniciada")
+
+              toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "3",
+                "timeOut": "300",
+                "extendedTimeOut": "300",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
                 i=usuarios.length;
                 registrado=true;
                 $("#di1").hide();
@@ -109,15 +127,15 @@ function matricula(){
               alert("Coche registrado");
               i=coches.length;
               registrado=true;
-              $("#di3").hide();
-    $("#di4").fadeIn("slow");
+              
                           
           }
           
        }
   if (registrado==false) {
     alert("coche no registrado");
-    
+    $("#di3").hide();
+    $("#di4").fadeIn("slow");
 
      
 }

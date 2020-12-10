@@ -1,3 +1,6 @@
+//https://ourcodeworld.co/articulos/leer/52/top-10-mejores-librerias-de-alerta-y-notificacion-de-javascript-y-jquery
+
+
 var dni=["76035771W"];
 var filnomyape=/^(?!.* (?: |$))[a-zA-z\-\s]+$/;
 var filterdni=/^([0-9]){8}([a-zA-z]){1}/;
@@ -21,7 +24,11 @@ function regi(){
             if (x5==dni[i]) {
                 $('#i1').val('');
                 $('#i1').focus();
-                alert("Usuario regitrado, sesion iniciada");
+                $.toast({
+                    text: 'Set the `showHideTransition` property to fade|plain|slide to achieve different transitions',
+                    heading: 'Slide transition',
+                    showHideTransition: 'slide'
+                })
                 i=dni.length;
                 registrado=false;
               
