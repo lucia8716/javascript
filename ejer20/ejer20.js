@@ -7,10 +7,14 @@ var usuario1 ={usuario:"mario",contraseña:'12345678901a'};
 var usuario2 ={usuario:"pedro",contraseña:'12345678901b'};
 var usuario3 ={usuario:"juan",contraseña:'12345678901c'};
 var usuarios=[usuario1,usuario2,usuario3];
+var filtermarca=/^([a-zA-Z])*$/;
+var contadorcoches=3;
 
-var coche1={matricula:"2591HZV",estancia:"false",marca:"seat",modelo:"ibiza",color:"negro",nomproo:"mario",ape1prope:"crespo",ape2prope:"martin",email:"crespopopo@gmail.com"};
-var coche2={matricula:"2592HZV",estancia:"true",marca:"citroen",modelo:"xsara",color:"rojo",nomproo:"lucia",ape1prope:"gallego",ape2prope:"martin",email:"lucia@gmail.com"};
-var coche3={matricula:"2593HZV",estancia:"false",marca:"ford",modelo:"mondeo",color:"azul",nomproo:"patxi",ape1prope:"gallego",ape2prope:"cerezo",email:"patxi@gmail.com"};
+var filteremail=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+var coche1={matricula:"2591HZV",estancia:false,marca:"seat",modelo:"ibiza",color:"negro",nomproo:"mario",ape1prope:"crespo",ape2prope:"martin",email:"crespopopo@gmail.com"};
+var coche2={matricula:"2592HZV",estancia:true,marca:"citroen",modelo:"xsara",color:"rojo",nomproo:"lucia",ape1prope:"gallego",ape2prope:"martin",email:"lucia@gmail.com"};
+var coche3={matricula:"2593HZV",estancia:false,marca:"ford",modelo:"mondeo",color:"azul",nomproo:"patxi",ape1prope:"gallego",ape2prope:"cerezo",email:"patxi@gmail.com"};
 
 var coches=[coche1,coche2,coche3];
 var comp=true;
@@ -19,6 +23,74 @@ var comprobar=0;
 $("#di2").hide();
 $("#di3").hide();
 $("#di4").hide();
+$("#di6").hide();
+
+$( "#b1" ).click(function() {
+ 
+  $( "body" ).toggleClass( "divx1" );
+ 
+});
+
+function mal(){
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "2000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+}
+
+
+function bien(){
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-full-width",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "2000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+}
+
+function cuidado(){
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "2000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+}
 
 
   function regi(){
@@ -31,26 +103,12 @@ $("#di4").hide();
     var registrado=false;
 
       
+   
+    
       
     if(filtercontraseña.test(x1)==false){
       
-      toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-top-center",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "2000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-      }
+      mal();
       Command: toastr["error"]("Contraseña con formato incorrecto");
   $('#i1').val('');
   $('#i1').focus();}
@@ -58,23 +116,7 @@ $("#di4").hide();
 
 if(filnom.test(x2)==false){
     
-toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-center",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "2000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
+mal();
 Command: toastr["error"]("Nombre con formato incorrecto");
   $('#i2').val('');
   $('#i2').focus();}
@@ -83,23 +125,7 @@ Command: toastr["error"]("Nombre con formato incorrecto");
     if(filnom.test(x2)==true&&filtercontraseña.test(x1)){
         for (i = 0; i < usuarios.length; i++) {
             if (x2==usuarios[i].usuario&&x1==usuarios[i].contraseña) {
-              toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-full-width",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "2000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-              }
+              bien ();
               Command: toastr["success"]("Usuario logueado");
 
 
@@ -108,33 +134,15 @@ Command: toastr["error"]("Nombre con formato incorrecto");
                 $("#di1").hide();
                 $("#di2").fadeIn(4500);
                 $('#i1').val('');
+                $("#b1").hide();
             }
             
          }
          for (i = 0; i < usuarios.length; i++) {
           if (x2==usuarios[i].usuario&&x1!=usuarios[i].contraseña) {
               
-              toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-center",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "2000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-              }
+           mal();
               Command: toastr["error"]("Contraseña incorrecta");
-
-
-
               i=usuarios.length;
               comprobar=1;
               $('#i1').val('');
@@ -153,42 +161,14 @@ Command: toastr["error"]("Nombre con formato incorrecto");
         if(x2==usuarios[i].usuario){
           
           comprobar=1;
-        alert(comprobar);
+        
           i = usuarios.length;
 
         }
         
       }
 
-      /*if (comprobar==false) {
-
-        toastr.options = {
-          "closeButton": true,
-          "debug": false,
-          "newestOnTop": false,
-          "progressBar": false,
-          "positionClass": "toast-top-center",
-          "preventDuplicates": false,
-          "onclick": null,
-          "showDuration": "300",
-          "hideDuration": "1000",
-          "timeOut": "2000",
-          "extendedTimeOut": "1000",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-        }
-        Command: toastr["error"]("Usuario no registrado");
-        $('#i2').val('');
-        $('#i2').focus();  
-        $('#i1').val('');
-        
-
               
-      }*/
-    
-         
       
      }
       
@@ -197,23 +177,7 @@ if(comprobar==0&&(x2.length>0||x2.length==0)){
 
   
 
-  toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": false,
-    "positionClass": "toast-top-center",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "2000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
+ mal();
   Command: toastr["error"]("Usuario no registrado");
   $('#i2').val('');
   $('#i2').focus();  
@@ -248,53 +212,34 @@ function matricula(){
     
   if(filtermatricula.test(x1)==true){
       for (i = 0; i < coches.length; i++) {
-          if (x1==coches[i].matricula) {
-            toastr.options = {
-              "closeButton": false,
-              "debug": false,
-              "newestOnTop": false,
-              "progressBar": true,
-              "positionClass": "toast-top-full-width",
-              "preventDuplicates": false,
-              "onclick": null,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "2000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
-            Command: toastr["success"]("Coche registrado");
+          if (x1==coches[i].matricula&&coches[i].estancia==false) {
+            bien();
+            Command: toastr["success"]("Coche registrado, puede pasar");
               i=coches.length;
               registrado=true;
-              
-                          
-          }
+                        }
+                        if (x1==coches[i].matricula&&coches[i].estancia==true) {
+                          bien();
+                          Command: toastr["success"]("El Coche se encuentra en el parking");
+                            i=coches.length;
+                            registrado=true;
+                                      }
+
+
+
+
           
        }
   if (registrado==false) {
-    toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": false,
-      "positionClass": "toast-top-center",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "2000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
+   cuidado();
     Command: toastr["warning"]("Coche no registrado en la bbdd");
+   
+    document.getElementById("i4").value=x1;
+    
     $("#di3").hide();
     $("#di4").fadeIn(3500);
+    
+    
 
      
 }
@@ -304,32 +249,112 @@ function matricula(){
     if(filtermatricula.test(x1)==false)
     
     
-    toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": false,
-      "positionClass": "toast-top-center",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "2000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
+    mal();
     Command: toastr["error"]("matricula con formato incorrecto,Ej: 2591HZV ");
   $('#i3').val('');
   $('#i3').focus();}
 
  }
 
+function altanueva(){
+  
+if (filtermarca.test($('#i5').val())==false) {
+  $('#i5').val('');
+  $('#i5').focus();
+  mal();
+  Command: toastr["error"]("marca con formato incorrecto");
+  
+}
+
+
+if (filtermarca.test($('#i6').val())==false) {
+  $('#i6').val('');
+  $('#i6').focus();
+  mal();
+  Command: toastr["error"]("modelo con formato incorrecto");
+  
+}
+
+if (filnom.test($('#i7').val())==false) {
+  $('#i7').val('');
+  $('#i7').focus();
+  mal();
+  Command: toastr["error"]("nombre con formato incorrecto");
+  
+}
+
+if (filnom.test($('#i8').val())==false) {
+  $('#i8').val('');
+  $('#i8').focus();
+  mal();
+  Command: toastr["error"]("Apellido 1 con formato incorrecto");
+  
+}
+
+if (filnom.test($('#i9').val())==false) {
+  $('#i9').val('');
+  $('#i9').focus();
+  mal();
+  Command: toastr["error"]("apellido2 con formato incorrecto");
+  
+}
+
+if (filnom.test($('#i11').val())==false) {
+  $('#i9').val('');
+  $('#i9').focus();
+  mal();
+  Command: toastr["error"]("apellido2 con formato incorrecto");
+  
+}
+
+if (filteremail.test($('#i10').val())==false) {
+  $('#i10').val('');
+  $('#i10').focus();
+  mal();
+  Command: toastr["error"]("email con formato incorrecto");
+  
+}
 
 
 
+if (filtermarca.test($('#i5').val())==true&&filtermarca.test($('#i11').val())==true&&filtermarca.test($('#i6').val())==true&&filnom.test($('#i7').val())==true&&filnom.test($('#i8').val())==true&&filnom.test($('#i9').val())==true&&filteremail.test($('#i10').val())==true) {
+
+
+  bien();
+  Command: toastr["success"]("Coche registrado, puede pasar");
+
+  var coche4={matricula:$('#i4').val(),estancia:"true",marca:$('#i5').val(),modelo:$('#i6').val(),color:$('#i11').val(),nomproo:$('#i7').val(),ape1prope:$('#i8').val(),ape2prope:$('#i9').val(),email:$('#i10').val()};
+
+  coches.push(coche4);
+  contadorcoches++;
+  document.getElementById("i3").value='';
+  $("#di4").hide();
+  $("#di2").fadeIn(3500);
+  
+}
+
+}
+
+function consultar(){
+
+  alert("MArio");
+  $("#di6").fadeIn("slow");
+  $("#di2").hide();
+  for(i=0;i<coches.length;i++){
+
+    
+
+       
+                    
+  pruen="<table><tr>"+"<td>"+"<strong>Nº Referencia</strong>"+" "+coches[i].matricula+"</td>" +" "+"<td>"+"<strong>Nombre comun</strong>"+coches[i].estancia+ " "+"</td>"+"<td>"+"<strong>Composicion</strong>"+coches[i].marca+"</td>"+" "+"<td>"+"<strong>Laboratorio</strong>"+coches[i].modelo+"</td>"+ " "+"<td>"+"<strong>Precio Compra</strong>"+coches[i].nomproo+"</td>"+ " "+"<td>"+"<strong>Precio venta</strong>"+ " "+coches[i].ape1prope+"</td>"+ " "+"<td>"+"<strong>Unidades en stock</strong>"+coches[i].ape2prope+"</td>"+"</tr></table>"+"</br>";
+          
+    document.getElementById("di6").innerHTML += pruen
+    
+}
+
+
+
+}
 
 
 
