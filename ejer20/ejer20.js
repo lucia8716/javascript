@@ -8,11 +8,11 @@ var usuario2 ={usuario:"pedro",contraseña:'12345678901b'};
 var usuario3 ={usuario:"juan",contraseña:'12345678901c'};
 var usuarios=[usuario1,usuario2,usuario3];
 var filtermarca=/^([a-zA-Z])*$/;
-var contadorcoches=3;
+var contadorcoches=2;
 
 var filteremail=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-var coche1={matricula:"2591HZV",estancia:false,marca:"seat",modelo:"ibiza",color:"negro",nomproo:"mario",ape1prope:"crespo",ape2prope:"martin",email:"crespopopo@gmail.com"};
+var coche1={matricula:"2591HZV",estancia:true,marca:"seat",modelo:"ibiza",color:"negro",nomproo:"mario",ape1prope:"crespo",ape2prope:"martin",email:"crespopopo@gmail.com"};
 var coche2={matricula:"2592HZV",estancia:true,marca:"citroen",modelo:"xsara",color:"rojo",nomproo:"lucia",ape1prope:"gallego",ape2prope:"martin",email:"lucia@gmail.com"};
 var coche3={matricula:"2593HZV",estancia:false,marca:"ford",modelo:"mondeo",color:"azul",nomproo:"patxi",ape1prope:"gallego",ape2prope:"cerezo",email:"patxi@gmail.com"};
 
@@ -24,6 +24,8 @@ $("#di2").hide();
 $("#di3").hide();
 $("#di4").hide();
 $("#di6").hide();
+$("#di7").hide();
+$("#di8").hide();
 
 $( "#b1" ).click(function() {
  
@@ -190,6 +192,8 @@ if(comprobar==0&&(x2.length>0||x2.length==0)){
 
      comprobar=0;
 
+     document.getElementById("i12").value=contadorcoches;
+
    }
 
   
@@ -327,6 +331,7 @@ if (filtermarca.test($('#i5').val())==true&&filtermarca.test($('#i11').val())==t
 
   coches.push(coche4);
   contadorcoches++;
+  document.getElementById("i12").value=contadorcoches;
   document.getElementById("i3").value='';
   $("#di4").hide();
   $("#di2").fadeIn(3500);
@@ -337,8 +342,9 @@ if (filtermarca.test($('#i5').val())==true&&filtermarca.test($('#i11').val())==t
 
 function consultar(){
 
-  alert("MArio");
+  
   $("#di6").fadeIn("slow");
+  $("#di8").fadeIn("slow");
   $("#di2").hide();
   for(i=0;i<coches.length;i++){
 
@@ -356,8 +362,87 @@ function consultar(){
 
 }
 
+function salidas1(){
+
+  $("#di2").hide();
+    $("#di7").fadeIn("slow");
+
+}
+
+function salida() {
+
+  
+  x1=$('#i13').val();
+  x1=x1.toUpperCase();
+
+
+  var registrado=false;
+    
+  if(filtermatricula.test(x1)==true){
+      for (i = 0; i < coches.length; i++) {
+          if (x1==coches[i].matricula&&coches[i].estancia==false) {
+            mal();
+            Command: toastr["error"]("Este coche no se encuentra en el parking");
+              i=coches.length;
+              registrado=true;
+              $('#i13').val('');
+              $('#i13').focus();
+                        }
+                        if (x1==coches[i].matricula&&coches[i].estancia==true) {
+                          bien();
+                          Command: toastr["success"]("El Coche puede salir del parking");
+                          coches[i].estancia=false;
+                          contadorcoches--;
+                          $('#i13').val('');
+                            i=coches.length;
+                            registrado=true;
+                            $("#di7").hide();
+                            $("#di2").fadeIn(3500);
+                            document.getElementById("i12").value=contadorcoches;
+                                      }
 
 
 
 
+          
+       }
+  if (registrado==false) {
+   cuidado();
+    Command: toastr["warning"]("Coche no registrado en la bbdd");
+   
+    document.getElementById("i4").value=x1;
+    $('#i13').val('');
+    $('#i13').focus();
+    
+        
+}
+  
+}
+
+
+}
+
+function volver(){
+  $("#di7").hide();
+    $("#di2").fadeIn("slow");
+
+
+}
  
+function volver2(){
+  document.getElementById("di6").innerHTML = '';
+  $("#di6").hide();
+  $("#di8").hide();
+    $("#di2").fadeIn("slow");
+
+
+}
+
+
+function volver3(){
+  $("#di3").hide();
+    $("#di2").fadeIn("slow");
+    document.getElementById('i3').value='';
+
+
+}

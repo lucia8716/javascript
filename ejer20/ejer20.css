@@ -140,22 +140,29 @@ border: none;
       text-transform: uppercase;
   } 
   
- #button2,#button3,#button4,#button5{
+ #button2,#button3,#button4{
     width: 30%;
     margin-top: 5%;
     margin-left: 36%;
     border-radius: 30px;
  }
 
-#button5{
+#button5,#button6,#button7,#button8{
     width: 35%;
     margin-top: 5%;
     margin-left: 32%;
     border-radius: 30px;
  }
 
+#i12{
 
+  width: 30px;
+}
   
+#di8{
+
+  background-color: white;
+}
 
 
  .dv button:hover{
