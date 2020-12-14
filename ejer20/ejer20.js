@@ -1,5 +1,5 @@
 //https://www.jqueryscript.net/other/jQuery-Plugin-For-Animated-Stackable-Toast-Messages-Toast.html
-
+//https://codepen.io/alexerlandsson/pen/mPWgpO
 var filnom=/^(?!.* (?: |$))[a-z\-]+$/;
 var filtercontraseña=/^([a-zA-Z0-9]){12}/;
 var filtermatricula=/^([0-9]){4}([a-zA-Z]){3}/;
@@ -7,7 +7,7 @@ var usuario1 ={usuario:"mario",contraseña:'12345678901a'};
 var usuario2 ={usuario:"pedro",contraseña:'12345678901b'};
 var usuario3 ={usuario:"juan",contraseña:'12345678901c'};
 var usuarios=[usuario1,usuario2,usuario3];
-var filtermarca=/^([a-zA-Z])*$/;
+var filtermarca=/^(?!.* (?: |$))[a-z ]+$/;
 var contadorcoches=2;
 
 var filteremail=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -192,7 +192,9 @@ if(comprobar==0&&(x2.length>0||x2.length==0)){
 
      comprobar=0;
 
-     document.getElementById("i12").value=contadorcoches;
+
+     $('#i12').val(contadorcoches);
+     //document.getElementById("i12").value=contadorcoches;
 
    }
 
@@ -207,26 +209,40 @@ $("#di3").fadeIn("slow");
 }
 
 
-function matricula(){
+function matri(){
 
   x1=$('#i3').val();
   x1=x1.toUpperCase();
+
+  
 
   var registrado=false;
     
   if(filtermatricula.test(x1)==true){
       for (i = 0; i < coches.length; i++) {
+
+        
           if (x1==coches[i].matricula&&coches[i].estancia==false) {
             bien();
             Command: toastr["success"]("Coche registrado, puede pasar");
+              coches[i].estancia=true;
+              contadorcoches++;
+              $('#i12').val(contadorcoches);
               i=coches.length;
               registrado=true;
+              $("#di3").hide();
+              $("#di2").fadeIn(3500);
+              $('#i3').val('');
+
+
                         }
                         if (x1==coches[i].matricula&&coches[i].estancia==true) {
                           bien();
                           Command: toastr["success"]("El Coche se encuentra en el parking");
                             i=coches.length;
                             registrado=true;
+                                                       
+                            $('#i3').val('');
                                       }
 
 
@@ -303,11 +319,11 @@ if (filnom.test($('#i9').val())==false) {
   
 }
 
-if (filnom.test($('#i11').val())==false) {
-  $('#i9').val('');
-  $('#i9').focus();
+if (filtermarca.test($('#i11').val())==false) {
+  $('#i11').val('');
+  $('#i11').focus();
   mal();
-  Command: toastr["error"]("apellido2 con formato incorrecto");
+  Command: toastr["error"]("color con formato incorrecto");
   
 }
 
@@ -323,16 +339,25 @@ if (filteremail.test($('#i10').val())==false) {
 
 if (filtermarca.test($('#i5').val())==true&&filtermarca.test($('#i11').val())==true&&filtermarca.test($('#i6').val())==true&&filnom.test($('#i7').val())==true&&filnom.test($('#i8').val())==true&&filnom.test($('#i9').val())==true&&filteremail.test($('#i10').val())==true) {
 
+  
+  
 
   bien();
   Command: toastr["success"]("Coche registrado, puede pasar");
 
-  var coche4={matricula:$('#i4').val(),estancia:"true",marca:$('#i5').val(),modelo:$('#i6').val(),color:$('#i11').val(),nomproo:$('#i7').val(),ape1prope:$('#i8').val(),ape2prope:$('#i9').val(),email:$('#i10').val()};
+  var coche4={matricula:$('#i4').val(),estancia:true,marca:$('#i5').val(),modelo:$('#i6').val(),color:$('#i11').val(),nomproo:$('#i7').val(),ape1prope:$('#i8').val(),ape2prope:$('#i9').val(),email:$('#i10').val()};
 
   coches.push(coche4);
   contadorcoches++;
-  document.getElementById("i12").value=contadorcoches;
-  document.getElementById("i3").value='';
+  $('#i12').val(contadorcoches);
+  $('#i5').val('');
+  $('#i6').val('');
+  $('#i7').val('');
+  $('#i8').val('');
+  $('#i9').val('');
+  $('#i10').val('');
+  $('#i11').val('');
+  $('#i3').val('');
   $("#di4").hide();
   $("#di2").fadeIn(3500);
   
@@ -346,15 +371,15 @@ function consultar(){
   $("#di6").fadeIn("slow");
   $("#di8").fadeIn("slow");
   $("#di2").hide();
+
+  pruen2="<table><thead><tr><th>MATRICULA</th><th>ESTANCIA</th><th>MARCA</th><th>MODELO</th><th>COLOR</th><th>NOMBRE</th><th>APELLIDO1</th><th>APELLIDO2</th><th>EMAIL</th></tr></thead></table>";
+  document.getElementById("di6").innerHTML +=pruen2+"</br>";
   for(i=0;i<coches.length;i++){
-
-    
-
-       
+   
                     
-  pruen="<table><tr>"+"<td>"+"<strong>Nº Referencia</strong>"+" "+coches[i].matricula+"</td>" +" "+"<td>"+"<strong>Nombre comun</strong>"+coches[i].estancia+ " "+"</td>"+"<td>"+"<strong>Composicion</strong>"+coches[i].marca+"</td>"+" "+"<td>"+"<strong>Laboratorio</strong>"+coches[i].modelo+"</td>"+ " "+"<td>"+"<strong>Precio Compra</strong>"+coches[i].nomproo+"</td>"+ " "+"<td>"+"<strong>Precio venta</strong>"+ " "+coches[i].ape1prope+"</td>"+ " "+"<td>"+"<strong>Unidades en stock</strong>"+coches[i].ape2prope+"</td>"+"</tr></table>"+"</br>";
+  pruen="<table><tbody><tr><td>"+ coches[i].matricula+"</td><td>"+ coches[i].estancia+"</td><td>"+ coches[i].marca+"</td></tr></tbody></table>";
           
-    document.getElementById("di6").innerHTML += pruen
+    document.getElementById("di6").innerHTML +=pruen;
     
 }
 
@@ -374,12 +399,15 @@ function salida() {
   
   x1=$('#i13').val();
   x1=x1.toUpperCase();
+  
 
 
   var registrado=false;
     
   if(filtermatricula.test(x1)==true){
       for (i = 0; i < coches.length; i++) {
+         
+        
           if (x1==coches[i].matricula&&coches[i].estancia==false) {
             mal();
             Command: toastr["error"]("Este coche no se encuentra en el parking");
@@ -398,27 +426,28 @@ function salida() {
                             registrado=true;
                             $("#di7").hide();
                             $("#di2").fadeIn(3500);
-                            document.getElementById("i12").value=contadorcoches;
+                            $('#i12').val(contadorcoches);
+                            
                                       }
-
-
-
 
           
        }
-  if (registrado==false) {
-   cuidado();
-    Command: toastr["warning"]("Coche no registrado en la bbdd");
-   
-    document.getElementById("i4").value=x1;
-    $('#i13').val('');
-    $('#i13').focus();
-    
-        
-}
-  
-}
 
+  
+}else{mal();
+  Command: toastr["error"]("formato de matricula incorrecto");}
+
+if (registrado==false) {
+  cuidado();
+   Command: toastr["warning"]("Coche no registrado en la bbdd");
+  
+   $('#i4').val(x1);
+
+   $('#i13').val('');
+   $('#i13').focus();
+   
+       
+}
 
 }
 
