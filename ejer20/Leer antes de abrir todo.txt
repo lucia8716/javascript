@@ -1,0 +1,15 @@
+Hola Jesus¡¡
+
+Estos son los usuarios con los que puedes entrar
+
+var usuario1 ={usuario:"mario",contraseña:'12345678901a'};//usuarios y contraseñas para poder acceder
+var usuario2 ={usuario:"pedro",contraseña:'12345678901b'};
+var usuario3 ={usuario:"juan",contraseña:'12345678901c'};
+
+Comentarte que he utilizado un plugin (toastr) para los alert, me resultaba interesante
+
+Para hacer css de las busquedas me he fijado de uno de internet, para la que tengas en cuenta
+
+En cuanto al toogel class, he tenido problemas con el, solo consigo que me cambie el fondo.
+
+
