@@ -3,12 +3,12 @@
 var filnom=/^(?!.* (?: |$))[a-z\-]+$/;
 var filtercontraseña=/^([a-zA-Z0-9]){12}/;
 var filtermatricula=/^([0-9]){4}([a-zA-Z]){3}/;
-var usuario1 ={usuario:"mario",contraseña:'12345678901a'};
+var usuario1 ={usuario:"mario",contraseña:'12345678901a'};//usuarios y contraseñas para poder acceder
 var usuario2 ={usuario:"pedro",contraseña:'12345678901b'};
 var usuario3 ={usuario:"juan",contraseña:'12345678901c'};
 var usuarios=[usuario1,usuario2,usuario3];
 var filtermarca=/^(?!.* (?: |$))[a-z ]+$/;
-var contadorcoches=400;
+var contadorcoches=2;
 
 var filteremail=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -29,11 +29,12 @@ $("#di8").hide();
 
 $( "#b1" ).click(function() {
  
-  $( "body" ).toggleClass( "divx1" );
+  $( "#bo" ).toggleClass( "divx1" );//cambio de color
+  $( "#di2" ).toggleClass( "divx2" );//cambio de color
  
 });
 
-function mal(){
+function mal(){ //configuracion del plugin alert error
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -54,7 +55,7 @@ function mal(){
 }
 
 
-function bien(){
+function bien(){//configuracion del plugin alert bien
   toastr.options = {
     "closeButton": false,
     "debug": false,
@@ -74,7 +75,7 @@ function bien(){
   }
 }
 
-function cuidado(){
+function cuidado(){//configuracion del plugin alert warning
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -95,7 +96,7 @@ function cuidado(){
 }
 
 
-  function regi(){
+  function regi(){//configuracion de casuistica de registro
     
   x1=$('#i1').val();
   x2=$('#i2').val();
@@ -108,7 +109,7 @@ function cuidado(){
    
     
       
-    if(filtercontraseña.test(x1)==false){
+    if(filtercontraseña.test(x1)==false){ //control de contraseña
       
       mal();
       Command: toastr["error"]("Contraseña con formato incorrecto");
@@ -119,12 +120,12 @@ function cuidado(){
 if(filnom.test(x2)==false){
     
 mal();
-Command: toastr["error"]("Nombre con formato incorrecto");
+Command: toastr["error"]("Nombre con formato incorrecto");//control de nombre
   $('#i2').val('');
   $('#i2').focus();}
     
     
-    if(filnom.test(x2)==true&&filtercontraseña.test(x1)){
+    if(filnom.test(x2)==true&&filtercontraseña.test(x1)){ //control de contraseña y nombre registrado, para ver si es el correcto
         for (i = 0; i < usuarios.length; i++) {
             if (x2==usuarios[i].usuario&&x1==usuarios[i].contraseña) {
               bien ();
@@ -141,7 +142,7 @@ Command: toastr["error"]("Nombre con formato incorrecto");
             
          }
          for (i = 0; i < usuarios.length; i++) {
-          if (x2==usuarios[i].usuario&&x1!=usuarios[i].contraseña) {
+          if (x2==usuarios[i].usuario&&x1!=usuarios[i].contraseña) { //control de contraseña y nombre registrado para controlar si la clave es erronea
               
            mal();
               Command: toastr["error"]("Contraseña incorrecta");
@@ -176,7 +177,7 @@ Command: toastr["error"]("Nombre con formato incorrecto");
       
      
 if(comprobar==0&&(x2.length>0||x2.length==0)){
-
+ //controla que el usuario no tiene registro
   
 
  mal();
@@ -201,7 +202,7 @@ if(comprobar==0&&(x2.length>0||x2.length==0)){
   
   
 
-function entrada() {
+function entrada() { //muestra y quita div
 
   $("#di2").hide();
 $("#di1").hide();
@@ -209,8 +210,8 @@ $("#di3").fadeIn("slow");
 }
 
 
-function matri(){
-
+function matri(){ //funcion de control de matriculas
+ 
   x1=$('#i3').val();
   x1=x1.toUpperCase();
 
@@ -225,13 +226,13 @@ function matri(){
 
 
     
-  if(filtermatricula.test(x1)==true){
+  if(filtermatricula.test(x1)==true){ //control de matricula con formato correcto
 
-    if(contadorcoches==400)
+    if(contadorcoches==400)//para controlar que no tenga mas de 400 coches en parking
 
     {
   
-for (z = 0; z < coches.length; z++) {
+for (z = 0; z < coches.length; z++) { //controla que el coche este en el parking
   if (x1==coches[z].matricula&&coches[z].estancia==true) {
     cuidado();
     Command: toastr["warning"]("El Coche se encuentra en el parking");
@@ -244,7 +245,7 @@ for (z = 0; z < coches.length; z++) {
 }
 
       mal();
-      Command: toastr["error"]("Parking con las 400 plazas ocupadas");
+      Command: toastr["error"]("Parking con las 400 plazas ocupadas");//para controlar que no tenga mas de 400 coches en parking
       $('#i3').val('');
       $('#i3').focus();
   
@@ -259,7 +260,7 @@ for (z = 0; z < coches.length; z++) {
 
 
             bien();
-            Command: toastr["success"]("Coche registrado, puede pasar");
+            Command: toastr["success"]("Coche registrado, puede pasar"); //esl cohe esta registrado y no esta en el parking
               coches[i].estancia=true;
               contadorcoches++;
               $('#i12').val(contadorcoches);
@@ -273,7 +274,7 @@ for (z = 0; z < coches.length; z++) {
                         }
                         if (x1==coches[i].matricula&&coches[i].estancia==true) {
                           cuidado();
-                          Command: toastr["warning"]("El Coche se encuentra en el parking");
+                          Command: toastr["warning"]("El Coche se encuentra en el parking");//esl cohe esta registrado y si esta en el parking
                             i=coches.length;
                             registrado=true;
                                                        
@@ -287,7 +288,7 @@ for (z = 0; z < coches.length; z++) {
        }
   if (registrado==false) {
    cuidado();
-    Command: toastr["warning"]("Coche no registrado en la bbdd");
+    Command: toastr["warning"]("Coche no registrado en la bbdd"); // no hay coche en la bbdd del parking con esa matricula
    
     document.getElementById("i4").value=x1;
     
@@ -300,7 +301,7 @@ for (z = 0; z < coches.length; z++) {
   }
   }else{
     
-    if(filtermatricula.test(x1)==false)
+    if(filtermatricula.test(x1)==false)//matricula con formato incorrecto,Ej: 2591HZV "
     
     
     mal();
@@ -312,7 +313,7 @@ for (z = 0; z < coches.length; z++) {
 }
 
 
-function altanueva(){
+function altanueva(){ //para controlar los registros de los coches nuevos
   
 if (filtermarca.test($('#i5').val())==false) {
   $('#i5').val('');
@@ -376,7 +377,7 @@ if (filteremail.test($('#i10').val())==false) {
 if (filtermarca.test($('#i5').val())==true&&filtermarca.test($('#i11').val())==true&&filtermarca.test($('#i6').val())==true&&filnom.test($('#i7').val())==true&&filnom.test($('#i8').val())==true&&filnom.test($('#i9').val())==true&&filteremail.test($('#i10').val())==true) {
 
   
-  
+  //si todo esta ok mete el coche en el array
 
   bien();
   Command: toastr["success"]("Coche registrado, puede pasar");
@@ -401,7 +402,7 @@ if (filtermarca.test($('#i5').val())==true&&filtermarca.test($('#i11').val())==t
 
 }
 
-function consultar(){
+function consultar(){ //lista de coches
 
   
   $("#di6").fadeIn("slow");
@@ -430,7 +431,7 @@ function salidas1(){
 
 }
 
-function salida() {
+function salida() { //para dar coches de baja y sus diferentes casuisticas
 
   
   x1=$('#i13').val();
@@ -444,7 +445,7 @@ function salida() {
       for (i = 0; i < coches.length; i++) {
          
         
-          if (x1==coches[i].matricula&&coches[i].estancia==false) {
+          if (x1==coches[i].matricula&&coches[i].estancia==false) { //el coche no esta en el parking
             mal();
             Command: toastr["error"]("Este coche no se encuentra en el parking");
               i=coches.length;
@@ -452,9 +453,9 @@ function salida() {
               $('#i13').val('');
               $('#i13').focus();
                         }
-                        if (x1==coches[i].matricula&&coches[i].estancia==true) {
+                        if (x1==coches[i].matricula&&coches[i].estancia==true) {//el coche esta en el parking
                           bien();
-                          Command: toastr["success"]("El Coche puede salir del parking");
+                          Command: toastr["success"]("El Coche puede salir del parking"); 
                           coches[i].estancia=false;
                           contadorcoches--;
                           $('#i13').val('');
@@ -487,14 +488,14 @@ if (registrado==false) {
 
 }
 
-function volver(){
+function volver(){ //funcion para el boton de volver
   $("#di7").hide();
     $("#di2").fadeIn("slow");
 
 
 }
  
-function volver2(){
+function volver2(){//funcion para el boton de volver
   document.getElementById("di6").innerHTML = '';
   $("#di6").hide();
   $("#di8").hide();
@@ -504,7 +505,7 @@ function volver2(){
 }
 
 
-function volver3(){
+function volver3(){//funcion para el boton de volver
   $("#di3").hide();
     $("#di2").fadeIn("slow");
     document.getElementById('i3').value='';
