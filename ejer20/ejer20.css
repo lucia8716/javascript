@@ -1,5 +1,5 @@
 
-
+/* Parte del css esta cogido de internet, para el plugin de los alert y para la consulta*/
 
   
 
@@ -25,7 +25,7 @@
     border-radius:90px;
 margin-bottom:30px ;
 margin-top:15px ;
-margin-left:34% ;
+margin-left:36% ;
 background-color:rgb(255, 255, 255);
 
 
@@ -172,7 +172,7 @@ border: none;
 
 #i12{
 
-  width: 30px;
+  width: 40px;
   margin-left: 0%;
 }
   
@@ -187,6 +187,19 @@ border: none;
     color: white;
   }
 
+
+
+  .contenedor{
+    
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+    
+  }
 
   table {
     width: 800px;
@@ -204,25 +217,23 @@ td {
 }
 
 th {
-	text-align: left;
+  margin-left: 10%;
+	text-align: center;
 }
 
-thead {
-	th {
+thead th {
 		background-color: #55608f;
 	}
-}
 
-tbody {
-	tr {
-		&:hover {
+
+tbody tr :hover {
 			background-color: rgba(255,255,255,0.3);
 		}
-	}
-	td {
-		position: relative;
-		&:hover {
-			&:before {
+	
+	td 
+	
+		:hover 
+			:before {
 				content: "";
 				position: absolute;
 				left: 0;
@@ -232,6 +243,5 @@ tbody {
 				background-color: rgba(255,255,255,0.2);
 				z-index: -1;
 			}
-		}
-	}
-}
+		
+	

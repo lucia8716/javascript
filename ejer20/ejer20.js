@@ -8,7 +8,7 @@ var usuario2 ={usuario:"pedro",contraseña:'12345678901b'};
 var usuario3 ={usuario:"juan",contraseña:'12345678901c'};
 var usuarios=[usuario1,usuario2,usuario3];
 var filtermarca=/^(?!.* (?: |$))[a-z ]+$/;
-var contadorcoches=2;
+var contadorcoches=400;
 
 var filteremail=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -99,7 +99,7 @@ function cuidado(){
     
   x1=$('#i1').val();
   x2=$('#i2').val();
-  x2=x2.toLowerCase()
+  x2=x2.toLowerCase();
     
     
     var registrado=false;
@@ -217,12 +217,47 @@ function matri(){
   
 
   var registrado=false;
+
+
+  
+
+
+
+
     
   if(filtermatricula.test(x1)==true){
+
+    if(contadorcoches==400)
+
+    {
+  
+for (z = 0; z < coches.length; z++) {
+  if (x1==coches[z].matricula&&coches[z].estancia==true) {
+    cuidado();
+    Command: toastr["warning"]("El Coche se encuentra en el parking");
+      z=coches.length;
+      registrado=true;
+                                 
+      $('#i3').val('');
+  }
+   
+}
+
+      mal();
+      Command: toastr["error"]("Parking con las 400 plazas ocupadas");
+      $('#i3').val('');
+      $('#i3').focus();
+  
+    }else{
+
+
       for (i = 0; i < coches.length; i++) {
 
         
           if (x1==coches[i].matricula&&coches[i].estancia==false) {
+
+
+
             bien();
             Command: toastr["success"]("Coche registrado, puede pasar");
               coches[i].estancia=true;
@@ -233,12 +268,12 @@ function matri(){
               $("#di3").hide();
               $("#di2").fadeIn(3500);
               $('#i3').val('');
-
+          
 
                         }
                         if (x1==coches[i].matricula&&coches[i].estancia==true) {
-                          bien();
-                          Command: toastr["success"]("El Coche se encuentra en el parking");
+                          cuidado();
+                          Command: toastr["warning"]("El Coche se encuentra en el parking");
                             i=coches.length;
                             registrado=true;
                                                        
@@ -258,12 +293,11 @@ function matri(){
     
     $("#di3").hide();
     $("#di4").fadeIn(3500);
-    
-    
+      
 
      
 }
-
+  }
   }else{
     
     if(filtermatricula.test(x1)==false)
@@ -274,7 +308,9 @@ function matri(){
   $('#i3').val('');
   $('#i3').focus();}
 
- }
+ 
+}
+
 
 function altanueva(){
   
@@ -377,7 +413,7 @@ function consultar(){
   for(i=0;i<coches.length;i++){
    
                     
-  pruen="<table><tbody><tr><td>"+ coches[i].matricula+"</td><td>"+ coches[i].estancia+"</td><td>"+ coches[i].marca+"</td></tr></tbody></table>";
+  pruen="<table><tbody><tr><td>"+ coches[i].matricula+"</td><td>"+ coches[i].estancia+"</td><td>"+ coches[i].marca+"</td><td>"+ coches[i].modelo+"</td><td>"+ coches[i].color+"</td><td>"+ coches[i].nomproo+"</td><td>"+ coches[i].ape1prope+"</td><td>"+ coches[i].ape2prope+"</td><td>"+ coches[i].email+"</td></tr></tbody></table>";
           
     document.getElementById("di6").innerHTML +=pruen;
     
